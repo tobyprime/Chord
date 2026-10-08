@@ -1,0 +1,24 @@
+.gradle/
+build/
+run/
+runs/
+*.log
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# 本地采样留档与素材缓存（来源与重取方式见 assets/resourcepack/README.md）
+/downloads/
+
+# 打包产物（Release 附件；由 tools/build-pack.py 或 CI 生成）
+assets/resourcepack/chord.zip
+
+# tools/ 下的脚本纳入版本库，只忽略本地缓存与发行包
+tools/__pycache__/
+tools/gradle-9.8.0/
+
+# ZCode 工作区文件
+.zcodeignore

@@ -1,0 +1,26 @@
+name: Chord
+version: 0.8.0
+main: chord.plugin.ChordPlugin
+api-version: '26.2'
+folia-supported: true
+description: 服务端音频广播：与 Chord 客户端模组配合，让聆听者零安装听到演奏。
+author: Chord
+softdepend: [CraftEngine]
+commands:
+  chord:
+    description: Chord 乐器命令
+    usage: /chord <instruments|give|piano|reload|mute>
+    permission: chord.use
+permissions:
+  chord.use:
+    description: 使用 /chord 基础命令
+    default: true
+  chord.admin:
+    description: 发放乐器、重载配置、管理世界乐器
+    default: op
+  chord.piano:
+    description: 绑定/解绑世界乐器（CraftEngine 家具集成用，可授予玩家组）
+    default: op
+  chord.mute:
+    description: 屏蔽其他玩家的演奏
+    default: true

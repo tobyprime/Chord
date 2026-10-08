@@ -1,0 +1,28 @@
+# Chord 插件配置
+#
+# 音色/乐器定义在 instruments.yml。
+
+limits:
+  # 每玩家每秒 note-on 上限（令牌桶速率；note-off 不计数，天然受活跃音约束）。
+  # 注意和弦 + 鼠标修饰键实时变调会把 off/on 成对连发：5 音和弦按住 + 变调一次
+  # = 10 个 note-on；0.7.12 起还有实时 MIDI 键盘（快速乐句/刮奏可瞬时 30+ 音），
+  # 故默认 40/24，避免正常演奏被限速掐音。旧配置文件需手动同步本值
+  notes-per-second: 40
+  # 令牌桶容量（瞬时突发上限）
+  burst: 24
+  # 和弦上限（同时按住未松开的最大音符数）0.7.7 起由各乐器的 max-polyphony 决定
+  # （instruments.yml，钢琴 10 / 旋律乐器 6），不再使用本文件的全局值
+
+# 演奏时是否必须手持对应乐器物品（防伪造包）
+require-held-instrument: true
+
+broadcast:
+  # 演奏者自己是否也听到服务端广播回来的演奏（V1 默认含演奏者，见设计文档 §9）
+  include-performer: true
+
+effects:
+  # 演奏时在演奏者头顶冒音符粒子（音高映射色相，对所有玩家可见）
+  note-particles: true
+  # 自动演奏的区分特效：音符一律金色并带白色光点，起止时头顶爆发一簇粒子。
+  # 不做聊天栏广播——周围玩家靠特效分辨是否自动演奏，听不到的人不被打扰
+  auto-particles: true

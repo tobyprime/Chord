@@ -1,0 +1,407 @@
+# Chord 乐器定义
+#
+# 通用字段：
+#   display-name    显示名
+#   base-item       底子物品（发放给玩家的原版物品；原版旁观者看到的就是它）
+#   semitone-range  [最小, 最大] 相对中心音的半音偏移；客户端据此灰显超域键位
+#   volume          音量/可听距离：约 16×volume 格（1.0 ≈ 16 格，2.0 ≈ 32 格）
+#   max-polyphony   复音容量（默认 6）：「按住中」的最大同时音符数。两处生效：客户端
+#                   MIDI 转换的自动单音收敛阈值（原始复音超过该值才收敛单旋律——电钢琴
+#                   真弹录音复音 7+，按默认 6 会把左手/和弦内声部整只削掉，故钢琴十指
+#                   给 10）；非 sustain 乐器的服务端和弦上限（0.7.9 起 sustain 乐器
+#                   不设服务端上限——MIDI 踏板烘焙会把松开的音留在活跃表合法堆叠，
+#                   且活跃表按半音建键天然有界，滥用由限速器约束）。
+#   category        声音分类（RECORDS/MUSIC/MASTER...），影响客户端音量滑条
+#
+# voices：分音区路由表，按顺序首个命中区间的生效。
+#   pitch(semitone) = base-pitch × 2^(semitone/12)，客户端最终钳制在 [0.5, 2.0]。
+#   sound 支持逐音符事件模板（含 %d，%d = 半音偏移，如 chord:harmonica.c4.-3）：
+#   资源包为每个半音注册独立事件（指向同一采样文件），插件停音时对该事件精确 stopSound，
+#   实现「按住持续发声、松开即停」且互不影响和弦中的其他音。
+#   不含 %d 的普通事件无 note-off，播完整条采样（如 fallback 的原版音符盒音色）。
+#   base-pitch 换算：采样实测音高为 center + c（c = 采样相对中心音的半音数）时
+#   base-pitch = 2^(−c/12)。
+#   fixed: true     打击乐行：pitch 恒等于 base-pitch，半音只用来选鼓件、不变调
+#                   （否则同一鼓件会被半音偏移「变调」成低音军鼓/高音军鼓）。
+#   label: "大鼓"   区间显示名，随 chord:sync 下发客户端（HUD/直排音配置屏显示；
+#                   无 label 的乐器显示音级名 低1/高2♯…）。鼓件布局靠它可读。
+#
+# 当前采样（VCSL Hohner Super 64，实测音名，中心音 = C4）：
+#   0.7.14 起 12 锚点网格（C3~G6 每 3~4 半音一个实测采样，见 voices 表内注释），
+#   常用区间拉伸 ≤±2 半音；仅底部 C2~B2 借 C3 采样下探（最多 −12，真实乐器 C3 起）。
+# 拼接覆盖 [−24, +31]（C2~G6）。semitone-range 直接放开到采样全域：默认音级键可达
+# [−12, +25]（低1~高6♯），更高/更低的音（低低音、高高音）经 chord.json 的 direct_notes
+# 直排音键绑定演奏；底部一个八度的下探变速会把音色压窄，属采样乐器的正常表现。
+#
+# fallback-voices：可选，未接受资源包玩家的降级音色（V1 仅解析存储，
+# 按聆听者定向下发在 V1.2 启用；原版音符盒音色无 note-off，长音播完整条采样）。
+
+harmonica:
+  display-name: "守夜人口琴"
+  base-item: GOAT_HORN
+  semitone-range: [-24, 31]   # C2~G6：低低1 ~ 高高5（高高5♯）
+  volume: 1.0
+  max-polyphony: 6            # 旋律乐器：自动单音收敛阈值默认值
+  category: RECORDS
+  voices:
+    # 0.7.14：12 锚点网格（VCSL Super 64 全部 C/E/G 录音，实测基频换算 base-pitch），
+    # 拉伸 ≤±2 半音（旧 3 锚点 ±12 拉伸是「电子感」的根因）；底部 C2~B2 仍借 C3 下探
+    #（真实 Super 64 自 C3 起）；RMS 已对齐 −11.3dB（旧三层平均水平，混音平衡不变）
+    - { min: -24, max: -10, sound: "chord:harmonica.c3.%d",  base-pitch: 2.0028962 }
+    - { min: -9,  max: -7,  sound: "chord:harmonica.e3.%d",  base-pitch: 1.5923983 }
+    - { min: -6,  max: -3,  sound: "chord:harmonica.g3.%d",  base-pitch: 1.3369068 }
+    - { min: -2,  max: 2,   sound: "chord:harmonica.c4.%d",  base-pitch: 0.9993443 }
+    - { min: 3,   max: 5,   sound: "chord:harmonica.e4.%d",  base-pitch: 0.7940330 }
+    - { min: 6,   max: 9,   sound: "chord:harmonica.g4.%d",  base-pitch: 0.6675157 }
+    - { min: 10,  max: 14,  sound: "chord:harmonica.c5.%d",  base-pitch: 0.5001084 }
+    - { min: 15,  max: 17,  sound: "chord:harmonica.e5.%d",  base-pitch: 0.3967474 }
+    - { min: 18,  max: 21,  sound: "chord:harmonica.g5.%d",  base-pitch: 0.3336099 }
+    - { min: 22,  max: 26,  sound: "chord:harmonica.c6.%d",  base-pitch: 0.2500739 }
+    - { min: 27,  max: 29,  sound: "chord:harmonica.e6.%d",  base-pitch: 0.1983322 }
+    - { min: 30,  max: 31,  sound: "chord:harmonica.g6.%d",  base-pitch: 0.1668348 }
+  fallback-voices:
+    - { min: -12, max: 12, sound: "block.note_block.bit", base-pitch: 1.0 }
+
+# 世界装置乐器：entry: world，无物品形态，右键交互实体进入演奏态。
+# 识别两种方式（chord 标记优先）：
+#   1. 声明式 world-bind（推荐）：实体 PDC 任意字符串值/自定义名命中 match-values 或
+#      match-regex 即视为本乐器——CraftEngine 等家具插件会在命中箱上自带家具标识，
+#      放置即生效、零逐台配置。用 /chord piano inspect 查看实体实际标识后填入。
+#   2. 手动标记（兜底）：/chord piano spawn 生成自带标记的实体，
+#      或 /chord piano bind 给任意交互实体打 chord 标记。
+# 音符校验：进入时服务端记住所点实体（会话），演奏必须仍在该实体 8 格内；实体被拆除即失效。
+# 退出：蹲下或走远（客户端 8 格自动退出，服务端同值校验）。
+# release-mode（释放模式）：
+#   stop    （默认，口琴）松键立刻止音——气息类乐器嘴离开就停，符合直觉。
+#   decay   （吉他/贝斯/鼓）松键不立刻止音，采样自然衰减出音尾；K 键 = 瞬时闷音
+#           （手掌闷音语义），退出演奏态/断线自动硬止音。
+#   sustain （钢琴）真钢琴制音器语义：默认松键即制音（150ms 制音器落弦缓冲，
+#           期间被同半音重击或踏板踩下「接住」则取消）；K 键 = **按住生效的延音踏板**
+#           ——踩住期间松键的音进余音表延续，松开踏板掐掉所有「键已松开」的余音
+#           （按住中的键不受影响）。抬键后 150ms 内踩踏板仍能接住余振（踏板时机捕捉）。
+# 钢琴采样（VCSL Steinway B Sus vl3，实测 C3 / E4 / G#5，中心音 = C4）：
+#   high 为 G#5（c=+20 → base-pitch 0.31498，有效区间 [+8, +32]），故 mid 延到 +7、high 从 +8 起。
+# 力度层（0.6.0，协议 v6）：vl2 柔音（velocity 1~63）/ vl4 强音（114~127）采样层，
+# 中间力度（64~113）回落到上面的常规 voices（vl3）。三层同 14 锚点网格，力度还同时
+# 缩放音量（100=基准 ×1.0，127 ≈ ×1.27）。
+# 演奏端默认力度 100（常规层），演奏态滚轮上下可调 40~127（跨进柔音/强音层），磁轴键盘等
+# 模拟输入源的逐键真实力度走同一字段（V2 适配器）。
+#
+# 锚点网格（0.7.16）：14 锚点纯四度间隔（A#0~F#7，VCSL JHPiano 每全音一个采样）。
+# 旧 5 锚点版（C1~C7）high 窗向上拉满 12 半音（B5~G#6 pitch 1.2~2.0），高音
+# chipmunk 失真在 B5/C6/D6 最重；网格加密后每采样最大变调 ±3 半音（D1/D#1 拉
+# -4、顶键 C8 拉 +6，其余 ≤±3），全部落在客户端钳制 [0.5, 2.0] 内。
+# base-pitch = 2^((60-midi)/12) × 实测校正（tools/piano-endings.py 会打印校正值）。
+piano:
+  display-name: "三角钢琴"
+  entry: world
+  release-mode: sustain
+  semitone-range: [-39, 48]   # A0~C8：标准 88 键全域（0.7.4，两端各加一锚点八度）
+  volume: 1.2
+  max-polyphony: 10           # 十指乐器：超 6 复音的真弹 MIDI 不再收敛单旋律（0.7.5）
+  category: RECORDS
+  voices:
+    - { min: -39, max: -35, sound: "chord:piano.as0.%d", base-pitch: 8.9353 }    # A#0 采样（A0 拉 -1 半音起）
+    - { min: -34, max: -27, sound: "chord:piano.fs1.%d", base-pitch: 5.6446 }
+    - { min: -26, max: -21, sound: "chord:piano.c2.%d",  base-pitch: 3.9925 }
+    - { min: -20, max: -15, sound: "chord:piano.fs2.%d", base-pitch: 2.8180 }
+    - { min: -14, max: -9,  sound: "chord:piano.c3.%d",  base-pitch: 1.9933 }
+    - { min: -8,  max: -3,  sound: "chord:piano.fs3.%d", base-pitch: 1.4120 }
+    - { min: -2,  max: 3,   sound: "chord:piano.c4.%d",  base-pitch: 0.9967 }
+    - { min: 4,   max: 9,   sound: "chord:piano.fs4.%d", base-pitch: 0.7082 }
+    - { min: 10,  max: 15,  sound: "chord:piano.c5.%d",  base-pitch: 0.5012 }
+    - { min: 16,  max: 21,  sound: "chord:piano.fs5.%d", base-pitch: 0.3540 }
+    - { min: 22,  max: 27,  sound: "chord:piano.c6.%d",  base-pitch: 0.2496 }      # 失真带 B5/C6/D6 落此锚点 ±3 内
+    - { min: 28,  max: 33,  sound: "chord:piano.fs6.%d", base-pitch: 0.1773 }
+    - { min: 34,  max: 39,  sound: "chord:piano.c7.%d",  base-pitch: 0.1241 }
+    - { min: 40,  max: 48,  sound: "chord:piano.fs7.%d", base-pitch: 0.0875 }  # 顶键 C8 = +6（钳制内 1.414）
+  # 力度分层：区间外的力度回落到上面常规 voices（64~113 = vl3 常规层）；柔音 vl2 / 强音 vl4
+  layers:
+    - min-velocity: 1
+      max-velocity: 63
+      voices:
+        - { min: -39, max: -35, sound: "chord:piano.soft.as0.%d", base-pitch: 8.9353 }
+        - { min: -34, max: -27, sound: "chord:piano.soft.fs1.%d", base-pitch: 5.6446 }
+        - { min: -26, max: -21, sound: "chord:piano.soft.c2.%d",  base-pitch: 3.9925 }
+        - { min: -20, max: -15, sound: "chord:piano.soft.fs2.%d", base-pitch: 2.8180 }
+        - { min: -14, max: -9,  sound: "chord:piano.soft.c3.%d",  base-pitch: 1.9933 }
+        - { min: -8,  max: -3,  sound: "chord:piano.soft.fs3.%d", base-pitch: 1.4120 }
+        - { min: -2,  max: 3,   sound: "chord:piano.soft.c4.%d",  base-pitch: 0.9967 }
+        - { min: 4,   max: 9,   sound: "chord:piano.soft.fs4.%d", base-pitch: 0.7082 }
+        - { min: 10,  max: 15,  sound: "chord:piano.soft.c5.%d",  base-pitch: 0.5012 }
+        - { min: 16,  max: 21,  sound: "chord:piano.soft.fs5.%d", base-pitch: 0.3540 }
+        - { min: 22,  max: 27,  sound: "chord:piano.soft.c6.%d",  base-pitch: 0.2496 }
+        - { min: 28,  max: 33,  sound: "chord:piano.soft.fs6.%d", base-pitch: 0.1773 }
+        - { min: 34,  max: 39,  sound: "chord:piano.soft.c7.%d",  base-pitch: 0.1241 }
+        - { min: 40,  max: 48,  sound: "chord:piano.soft.fs7.%d", base-pitch: 0.0875 }
+    - min-velocity: 114
+      max-velocity: 127
+      voices:
+        - { min: -39, max: -35, sound: "chord:piano.loud.as0.%d", base-pitch: 8.9353 }
+        - { min: -34, max: -27, sound: "chord:piano.loud.fs1.%d", base-pitch: 5.6446 }
+        - { min: -26, max: -21, sound: "chord:piano.loud.c2.%d",  base-pitch: 3.9925 }
+        - { min: -20, max: -15, sound: "chord:piano.loud.fs2.%d", base-pitch: 2.8180 }
+        - { min: -14, max: -9,  sound: "chord:piano.loud.c3.%d",  base-pitch: 1.9933 }
+        - { min: -8,  max: -3,  sound: "chord:piano.loud.fs3.%d", base-pitch: 1.4120 }
+        - { min: -2,  max: 3,   sound: "chord:piano.loud.c4.%d",  base-pitch: 0.9967 }
+        - { min: 4,   max: 9,   sound: "chord:piano.loud.fs4.%d", base-pitch: 0.7082 }
+        - { min: 10,  max: 15,  sound: "chord:piano.loud.c5.%d",  base-pitch: 0.5012 }
+        - { min: 16,  max: 21,  sound: "chord:piano.loud.fs5.%d", base-pitch: 0.3540 }
+        - { min: 22,  max: 27,  sound: "chord:piano.loud.c6.%d",  base-pitch: 0.2496 }
+        - { min: 28,  max: 33,  sound: "chord:piano.loud.fs6.%d", base-pitch: 0.1773 }
+        - { min: 34,  max: 39,  sound: "chord:piano.loud.c7.%d",  base-pitch: 0.1241 }
+        - { min: 40,  max: 48,  sound: "chord:piano.loud.fs7.%d", base-pitch: 0.0875 }
+  fallback-voices:
+    - { min: -12, max: 12, sound: "block.note_block.harp", base-pitch: 1.0 }
+  # 制音尾音（0.7.8）：松键制音/松踏板/闷音时，stopSound 硬切后叠加的同源收音。
+  # sounds 三档按松键时的保持时长选（<1.2s / <2.4s / 更长）——素材取自主采样
+  # 自适应位置（时长 12%/30%/50%，上限 0.5/1.5/2.5s）的段落且保留天然电平，
+  # 尾音的响度与音色都接得上松键瞬间的琴音，衔接不跳变（固定归一的单档版在
+  # 按住 0.5~1.5s 后松键会跳升 7~10dB）。一次性事件不进活跃音表。
+  # 制音尾音（0.7.8 引入，0.7.16b 八档 + 电平补偿）：松键制音/松踏板/闷音时，stopSound
+  # 硬切后叠加同源收音。八档素材按「素材位置=保持时长」切自主采样（a~h，天然电平），
+  # 服务端按保持毫秒数就近偏早选档，再按主采样实测电平曲线（level-ms/level-db，
+  # 200ms 步进 100ms 窗 RMS 三点平滑）插值出 gain=level(素材)-level(松键) 折算 volume——
+  # 电平/斜率/音色三者都接上松键那一刻（0.7.16 三档固定阈值实测跳升 3dB=割裂感主因）。
+  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
+  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
+  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
+  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
+  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
+  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
+  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
+  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
+  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
+  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
+  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
+  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
+  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
+  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
+  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
+  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
+  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
+  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
+  release-voices:
+    - { min: -39, max: -35, base-pitch: 8.9353, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-12.94, -13.91, -14.74, -15.36, -15.62, -16.11, -16.55, -17.36, -18.26, -19.44, -20.62, -21.5, -22.2, -22.46, -22.59],
+        sounds: ["chord:piano.rel.as0.t0", "chord:piano.rel.as0.t1", "chord:piano.rel.as0.t2", "chord:piano.rel.as0.t3"] }
+    - { min: -34, max: -27, base-pitch: 5.6446, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-13.9, -16.16, -18.25, -20.09, -21.69, -22.6, -22.97, -23.02, -23.02, -23.02, -23.02, -23.02, -23.02, -23.51, -24.89],
+        sounds: ["chord:piano.rel.fs1.t0", "chord:piano.rel.fs1.t1", "chord:piano.rel.fs1.t2", "chord:piano.rel.fs1.t3"] }
+    - { min: -26, max: -21, base-pitch: 3.9925, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-13.92, -17.05, -19.06, -20.33, -21.51, -23.39, -24.81, -25.95, -26.29, -26.57, -26.57, -26.76, -27.49, -28.19, -28.5],
+        sounds: ["chord:piano.rel.c2.t0", "chord:piano.rel.c2.t1", "chord:piano.rel.c2.t2", "chord:piano.rel.c2.t3"] }
+    - { min: -20, max: -15, base-pitch: 2.818, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-13.03, -15.12, -17.81, -20.25, -21.85, -22.2, -22.4, -22.83, -24.06, -26.09, -28.32, -29.63, -29.63, -29.63, -29.63],
+        sounds: ["chord:piano.rel.fs2.t0", "chord:piano.rel.fs2.t1", "chord:piano.rel.fs2.t2", "chord:piano.rel.fs2.t3"] }
+    - { min: -14, max: -9, base-pitch: 1.9933, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-10.51, -14.6, -17.56, -19.82, -22.26, -24.42, -25.14, -25.14, -25.14, -25.92, -27.27, -28.06, -28.41, -29.66, -32.39],
+        sounds: ["chord:piano.rel.c3.t0", "chord:piano.rel.c3.t1", "chord:piano.rel.c3.t2", "chord:piano.rel.c3.t3"] }
+    - { min: -8, max: -3, base-pitch: 1.412, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-11.5, -13.13, -14.49, -16.15, -18.6, -21.08, -22.6, -23.48, -24.19, -25.07, -26.29, -27.66, -29.36, -31.14, -33.02],
+        sounds: ["chord:piano.rel.fs3.t0", "chord:piano.rel.fs3.t1", "chord:piano.rel.fs3.t2", "chord:piano.rel.fs3.t3"] }
+    - { min: -2, max: 3, base-pitch: 0.9967, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-11.08, -14.09, -17.26, -20.59, -23.14, -25.13, -26.76, -28.55, -29.34, -29.34, -29.57, -30.89, -33.71, -36.17, -38.5],
+        sounds: ["chord:piano.rel.c4.t0", "chord:piano.rel.c4.t1", "chord:piano.rel.c4.t2", "chord:piano.rel.c4.t3"] }
+    - { min: 4, max: 9, base-pitch: 0.7082, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-12.25, -15.04, -16.73, -19.69, -24.26, -27.63, -28.04, -28.04, -28.04, -29.55, -32.04, -32.79, -32.79, -32.79, -32.79],
+        sounds: ["chord:piano.rel.fs4.t0", "chord:piano.rel.fs4.t1", "chord:piano.rel.fs4.t2", "chord:piano.rel.fs4.t3"] }
+    - { min: 10, max: 15, base-pitch: 0.5012, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-12.58, -19.62, -23.61, -25.19, -28.69, -31.84, -35.18, -35.18, -35.18, -35.18, -35.18, -35.26, -37.79, -38.92, -39.36],
+        sounds: ["chord:piano.rel.c5.t0", "chord:piano.rel.c5.t1", "chord:piano.rel.c5.t2", "chord:piano.rel.c5.t3"] }
+    - { min: 16, max: 21, base-pitch: 0.354, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-11.69, -19.28, -26.76, -31.22, -35.27, -35.27, -35.27, -35.27, -36.14, -39.73, -39.73, -41.19, -41.33, -41.73, -41.73],
+        sounds: ["chord:piano.rel.fs5.t0", "chord:piano.rel.fs5.t1", "chord:piano.rel.fs5.t2", "chord:piano.rel.fs5.t3"] }
+    - { min: 22, max: 27, base-pitch: 0.2496, held-ms: [180, 350, 550, 1100],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
+        level-db: [-11.58, -19.08, -25.48, -29.13, -29.88, -30.48, -32.86, -34.66, -37.22, -40.7, -44.33, -46.76, -46.76, -46.76, -47.35],
+        sounds: ["chord:piano.rel.c6.t0", "chord:piano.rel.c6.t1", "chord:piano.rel.c6.t2", "chord:piano.rel.c6.t3"] }
+    - { min: 28, max: 33, base-pitch: 0.1773, held-ms: [180],
+        level-ms: [0, 200, 400, 600, 800, 1000],
+        level-db: [-10.96, -18.99, -26.82, -33.58, -40.77, -48.53],
+        sounds: ["chord:piano.rel.fs6.t0"] }
+    - { min: 34, max: 39, base-pitch: 0.1241, held-ms: [180, 350, 550],
+        level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600],
+        level-db: [-15.38, -23.16, -29.84, -32.65, -37.22, -40.3, -43.1, -44.6, -44.6],
+        sounds: ["chord:piano.rel.c7.t0", "chord:piano.rel.c7.t1", "chord:piano.rel.c7.t2"] }
+    - { min: 40, max: 48, base-pitch: 0.0875, held-ms: [180],
+        level-ms: [0, 200, 400, 600],
+        level-db: [-16.29, -31.5, -42.27, -48.61],
+        sounds: ["chord:piano.rel.fs7.t0"] }
+  # CraftEngine 家具接入：值 = CE 家具资源 id（FurnitureInteractEvent 直接给 id，
+  # 与命中箱虚拟实体的 PDC 无关——当前 CE 的 interaction 命中箱是包级虚拟实体，服务端无 PDC）。
+  # 也可用 match-regex 做通配，如 match-regex: ".*piano.*"
+  world-bind:
+    match-values: ["example:player_piano"]
+
+
+# 拨弦类乐器：release-mode decay（松键自然衰减，K 止音 = 手掌闷音）。
+# 吉他采样 freepats Spanish Classical Guitar（CC0），实测锚点 C3(+1.4c)/E4(+1.4c)/G5(−2.0c)
+# ——偏差 ≤2 音分，不校正；高音锚点自然衰减仅 1.13s（尼龙高音区物理极限）。
+# 音域 E2~E6 = 相对 C4 的 [-20, +28]（六弦标准调弦全域）。
+# base-pitch 换算细则与采样实测见 assets/resourcepack/README.md——换采样必须同步改这里。
+guitar:
+  display-name: "民谣吉他"
+  base-item: WOODEN_HOE
+  release-mode: decay
+  semitone-range: [-20, 28]
+  volume: 1.1
+  max-polyphony: 6
+  category: RECORDS
+  voices:
+    - { min: -20, max: 0,  sound: "chord:guitar.low.%d",  base-pitch: 2.0 }
+    - { min: 1,   max: 16, sound: "chord:guitar.mid.%d",  base-pitch: 0.7937006 }
+    - { min: 17,  max: 28, sound: "chord:guitar.high.%d", base-pitch: 0.3337158 }
+  fallback-voices:
+    - { min: -12, max: 12, sound: "block.note_block.guitar", base-pitch: 1.0 }
+
+# 电贝斯：采样 karoryfer Black-And-Blue "darkblack"（CC0）。注意该库文件名八度
+# 比科学音名高一个八度（e4 文件 = 实测 E3），锚点以实测为准：
+# C2（65.4Hz，−0.7c 忽略）/ E3（164.1Hz，−7.6c 已按实测校正）/ E4（325.6Hz，−21.3c 已校正，
+# 库内最高采样只到 E4，高把位原声偏平为乐器音准、输出端校正）。
+# 音域 E1~C5 = [-29, +12]（四弦 20 品全域）。low 层 base-pitch 4.0 = C2 采样相对
+# 中心音低 24 半音的换算值；窗口内每音最终 pitch = base-pitch × 2^(s/12) 恒在 [0.5, 2.0]。
+# mid/high 边界取 +3/+4：E4 锚点层从 +4 起（shift=0 音准最佳），mid 层顶 +3 避开 2.0 钳制缘。
+bass:
+  display-name: "电贝斯"
+  base-item: IRON_HOE
+  release-mode: decay
+  semitone-range: [-29, 12]
+  volume: 1.1
+  max-polyphony: 6
+  category: RECORDS
+  voices:
+    - { min: -29, max: -12, sound: "chord:bass.low.%d",  base-pitch: 4.0 }
+    - { min: -11, max: 3,   sound: "chord:bass.mid.%d",  base-pitch: 1.5943130 }
+    - { min: 4,   max: 12,  sound: "chord:bass.high.%d", base-pitch: 0.8035140 }
+  fallback-voices:
+    - { min: -12, max: 12, sound: "block.note_block.bass", base-pitch: 1.0 }
+
+# 架子鼓（世界装置乐器，放在地上右键演奏；CraftEngine 家具 world-bind 或
+# /chord piano spawn drums 兜底）。
+# 打击乐布局：12 半音 = 12 个鼓件，按八度周期重复（八度修饰键在副本间平移，
+# 每个副本是同一套鼓）。fixed: true = 音高恒定不变调；label 下发客户端 HUD
+# 显示鼓件名。8 个音级键默认位：Z=大鼓 X=小鼓 C=闭镲 V=开镲 B=高嗵 N=低嗵
+# M=叮镲 ,=大鼓(高八度位)；半音位（±1 修饰键/直排音）给到 副鼓/鼓边/踩镲/中嗵/重镲。
+# 鼓件是无 %d 的一次性采样事件：不进活跃音表——不受和弦上限约束（鼓滚奏需要）、
+# 无逐音止音（K 止音对鼓无效；开镲/镲片自然衰减完毕）。
+# 中嗵 = 高嗵采样 base-pitch 0.891（下移 2 半音当独立鼓用）。
+drums:
+  display-name: "架子鼓"
+  entry: world
+  release-mode: decay
+  semitone-range: [-12, 23]
+  volume: 1.6   # 0.7.2e：鼓组按响度重母带后仍整体偏轻的用户反馈，提到 1.6（≈25.6 格可听距离）
+  max-polyphony: 6
+  category: RECORDS
+  voices:
+    - { min: -12, max: -11, sound: "chord:drums.kick", fixed: true, label: "大鼓" }
+    - { min: -10, max: -10, sound: "chord:drums.snare", fixed: true, label: "小鼓" }
+    - { min: -9, max: -9, sound: "chord:drums.rim", fixed: true, label: "鼓边" }
+    - { min: -8, max: -8, sound: "chord:drums.hat.closed", fixed: true, label: "闭镲" }
+    - { min: -7, max: -7, sound: "chord:drums.hat.open", fixed: true, label: "开镲" }
+    - { min: -6, max: -6, sound: "chord:drums.hat.pedal", fixed: true, label: "踩镲" }
+    - { min: -5, max: -5, sound: "chord:drums.tom.high", fixed: true, label: "高嗵" }
+    - { min: -4, max: -4, sound: "chord:drums.tom.mid", fixed: true, label: "中嗵", base-pitch: 0.891 }
+    - { min: -3, max: -3, sound: "chord:drums.tom.floor", fixed: true, label: "低嗵" }
+    - { min: -2, max: -2, sound: "chord:drums.crash", fixed: true, label: "重镲" }
+    - { min: -1, max: -1, sound: "chord:drums.ride", fixed: true, label: "叮镲" }
+    - { min: 0, max: 1, sound: "chord:drums.kick", fixed: true, label: "大鼓" }
+    - { min: 2, max: 2, sound: "chord:drums.snare", fixed: true, label: "小鼓" }
+    - { min: 3, max: 3, sound: "chord:drums.rim", fixed: true, label: "鼓边" }
+    - { min: 4, max: 4, sound: "chord:drums.hat.closed", fixed: true, label: "闭镲" }
+    - { min: 5, max: 5, sound: "chord:drums.hat.open", fixed: true, label: "开镲" }
+    - { min: 6, max: 6, sound: "chord:drums.hat.pedal", fixed: true, label: "踩镲" }
+    - { min: 7, max: 7, sound: "chord:drums.tom.high", fixed: true, label: "高嗵" }
+    - { min: 8, max: 8, sound: "chord:drums.tom.mid", fixed: true, label: "中嗵", base-pitch: 0.891 }
+    - { min: 9, max: 9, sound: "chord:drums.tom.floor", fixed: true, label: "低嗵" }
+    - { min: 10, max: 10, sound: "chord:drums.crash", fixed: true, label: "重镲" }
+    - { min: 11, max: 11, sound: "chord:drums.ride", fixed: true, label: "叮镲" }
+    - { min: 12, max: 13, sound: "chord:drums.kick", fixed: true, label: "大鼓" }
+    - { min: 14, max: 14, sound: "chord:drums.snare", fixed: true, label: "小鼓" }
+    - { min: 15, max: 15, sound: "chord:drums.rim", fixed: true, label: "鼓边" }
+    - { min: 16, max: 16, sound: "chord:drums.hat.closed", fixed: true, label: "闭镲" }
+    - { min: 17, max: 17, sound: "chord:drums.hat.open", fixed: true, label: "开镲" }
+    - { min: 18, max: 18, sound: "chord:drums.hat.pedal", fixed: true, label: "踩镲" }
+    - { min: 19, max: 19, sound: "chord:drums.tom.high", fixed: true, label: "高嗵" }
+    - { min: 20, max: 20, sound: "chord:drums.tom.mid", fixed: true, label: "中嗵", base-pitch: 0.891 }
+    - { min: 21, max: 21, sound: "chord:drums.tom.floor", fixed: true, label: "低嗵" }
+    - { min: 22, max: 22, sound: "chord:drums.crash", fixed: true, label: "重镲" }
+    - { min: 23, max: 23, sound: "chord:drums.ride", fixed: true, label: "叮镲" }
+  fallback-voices:
+    - { min: -12, max: 1,   sound: "block.note_block.basedrum", base-pitch: 1.0 }
+    - { min: 2,   max: 3,   sound: "block.note_block.snare",    base-pitch: 1.0 }
+    - { min: 4,   max: 6,   sound: "block.note_block.hat",      base-pitch: 1.0 }
+    - { min: 7,   max: 9,   sound: "block.note_block.basedrum", base-pitch: 0.891 }
+    - { min: 10,  max: 23,  sound: "block.note_block.hat",      base-pitch: 0.7937006 }
+  # CraftEngine 家具接入：值 = CE 家具资源 id（/chord piano inspect 或 CE 配置里查）
+  world-bind:
+    match-values: ["example:drum_kit"]
+
+# 手持拉弦乐器：release-mode stop（弓离弦即止音，硬切物理上成立，同口琴）。
+# 小提琴采样 VSCO 2 CE "SViolinVib"（Versilian Studios 独奏小提琴揉弦延音，CC0），
+# 15 锚点 G3~C7（G/A/C/E 网格，间距 2~4 半音）× p/f 双力度层（0.8.0）。
+# 音域 G3~E7 = [-5, +40]：真实音域直接放开（底部不做采样下探假音——口琴章
+# 「下探把音色压窄」的教训），顶部 C7 锚点上探 +4 到 E7（拉伸后 pitch 1.26，
+# 钳制内）；默认音级键可达 [0, +25]，低音 G3~B3 与高音区经直排音/八度修饰键演奏。
+# 键位窗口沿用 patch 原生键位表（就近路由，最大拉伸 ±2 半音，透明变速）。
+# p/f 两层都 RMS 对齐 −11.3dB（口琴同一混音基准）：层切换只变音色（弓压/亮度）
+# 不变响度，避免 63/64 力度边界跳变，强弱动态交给 velocityScale 连续缩放。
+# 重取/改档：python tools/violin-rebuild.py（S3 包 HTTP Range 局部抽取，
+# 勿整包下载 776MB；改锚点必须重跑，勿手改 base-pitch）。
+violin:
+  display-name: "小提琴"
+  base-item: STICK
+  release-mode: stop
+  semitone-range: [-5, 40]   # G3~E7：低5 ~ 高高高3（顶部 C7 锚点拉 +4 到 E7）
+  volume: 1.0
+  max-polyphony: 6           # 旋律乐器：自动单音收敛阈值默认值（双音/三音和弦有余量）
+  category: RECORDS
+  voices:
+    - { min: -5, max: -5, sound: "chord:violin.g3.%d",  base-pitch: 1.3363965 }  # G3 实测
+    - { min: -4, max: -2, sound: "chord:violin.a3.%d",  base-pitch: 1.1891861 }  # A3 实测
+    - { min: -1, max: 1,  sound: "chord:violin.c4.%d",  base-pitch: 1.0003563 }  # C4 实测
+    - { min: 2,  max: 5,  sound: "chord:violin.e4.%d",  base-pitch: 0.7918862 }  # E4 实测
+    - { min: 6,  max: 7,  sound: "chord:violin.g4.%d",  base-pitch: 0.6666818 }  # G4 实测
+    - { min: 8,  max: 10, sound: "chord:violin.a4.%d",  base-pitch: 0.5906024 }  # A4 实测
+    - { min: 11, max: 13, sound: "chord:violin.c5.%d",  base-pitch: 0.4989545 }  # C5 实测
+    - { min: 14, max: 17, sound: "chord:violin.e5.%d",  base-pitch: 0.3979779 }  # E5 实测
+    - { min: 18, max: 19, sound: "chord:violin.g5.%d",  base-pitch: 0.3345810 }  # G5 实测
+    - { min: 20, max: 22, sound: "chord:violin.a5.%d",  base-pitch: 0.2983060 }  # A5 实测
+    - { min: 23, max: 25, sound: "chord:violin.c6.%d",  base-pitch: 0.2534468 }  # C6 实测
+    - { min: 26, max: 29, sound: "chord:violin.e6.%d",  base-pitch: 0.1969409 }  # E6 实测
+    - { min: 30, max: 31, sound: "chord:violin.g6.%d",  base-pitch: 0.1648096 }  # G6 实测
+    - { min: 32, max: 34, sound: "chord:violin.a6.%d",  base-pitch: 0.1485453 }  # A6 实测
+    - { min: 35, max: 40, sound: "chord:violin.c7.%d",  base-pitch: 0.1245290 }  # C7 实测（+4 顶 E7）
+  # 力度分层：柔音 vl-p（velocity 1~63，弱弓/暗音色）；64~127 回落常规 voices（vl-f）
+  layers:
+    - min-velocity: 1
+      max-velocity: 63
+      voices:
+        - { min: -5, max: -5, sound: "chord:violin.soft.g3.%d",  base-pitch: 1.3371649 }  # G3 实测
+        - { min: -4, max: -2, sound: "chord:violin.soft.a3.%d",  base-pitch: 1.1873313 }  # A3 实测
+        - { min: -1, max: 1,  sound: "chord:violin.soft.c4.%d",  base-pitch: 0.9884622 }  # C4 实测
+        - { min: 2,  max: 5,  sound: "chord:violin.soft.e4.%d",  base-pitch: 0.7915868 }  # E4 实测
+        - { min: 6,  max: 7,  sound: "chord:violin.soft.g4.%d",  base-pitch: 0.6686558 }  # G4 实测
+        - { min: 8,  max: 10, sound: "chord:violin.soft.a4.%d",  base-pitch: 0.5949796 }  # A4 实测
+        - { min: 11, max: 13, sound: "chord:violin.soft.c5.%d",  base-pitch: 0.5007671 }  # C5 实测
+        - { min: 14, max: 17, sound: "chord:violin.soft.e5.%d",  base-pitch: 0.3955946 }  # E5 实测
+        - { min: 18, max: 19, sound: "chord:violin.soft.g5.%d",  base-pitch: 0.3342658 }  # G5 实测
+        - { min: 20, max: 22, sound: "chord:violin.soft.a5.%d",  base-pitch: 0.2981184 }  # A5 实测
+        - { min: 23, max: 25, sound: "chord:violin.soft.c6.%d",  base-pitch: 0.2512786 }  # C6 实测
+        - { min: 26, max: 29, sound: "chord:violin.soft.e6.%d",  base-pitch: 0.1968029 }  # E6 实测
+        - { min: 30, max: 31, sound: "chord:violin.soft.g6.%d",  base-pitch: 0.1667790 }  # G6 实测
+        - { min: 32, max: 34, sound: "chord:violin.soft.a6.%d",  base-pitch: 0.1489574 }  # A6 实测
+        - { min: 35, max: 40, sound: "chord:violin.soft.c7.%d",  base-pitch: 0.1250648 }  # C7 实测
+  fallback-voices:
+    - { min: -12, max: 12, sound: "block.note_block.flute", base-pitch: 1.0 }

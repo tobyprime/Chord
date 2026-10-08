@@ -1,0 +1,6542 @@
+{
+  "harmonica.c3": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e3": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g3": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e4": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g4": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e5": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g5": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e6": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g6": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.kick": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_kick",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.kick2": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_kick2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.snare": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_snare",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.rim": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_rim",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.hat.closed": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_hat_closed",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.hat.open": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_hat_open",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.hat.pedal": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_hat_pedal",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.tom.high": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_tom_high",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.tom.mid": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_tom_mid",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.tom.floor": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_tom_floor",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.as0.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_as0_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.as0.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_as0_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.as0.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_as0_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.as0.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_as0_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c2.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c2_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c2.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c2_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c2.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c2_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c2.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c2_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c3.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c3_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c3.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c3_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c3.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c3_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c3.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c3_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c4.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c4_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c4.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c4_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c4.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c4_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c4.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c4_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c5.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c5_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c5.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c5_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c5.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c5_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c5.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c5_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c6.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c6_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c6.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c6_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c6.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c6_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c6.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c6_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c7.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c7_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c7.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c7_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.c7.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_c7_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs1.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs1_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs1.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs1_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs1.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs1_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs1.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs1_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs2.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs2_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs2.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs2_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs2.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs2_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs2.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs2_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs3.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs3_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs3.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs3_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs3.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs3_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs3.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs3_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs4.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs4_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs4.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs4_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs4.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs4_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs4.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs4_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs5.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs5_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs5.t1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs5_t1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs5.t2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs5_t2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs5.t3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs5_t3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs6.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs6_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.rel.fs7.t0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_rel_fs7_t0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.crash": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_crash",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "drums.ride": {
+    "sounds": [
+      {
+        "name": "chord:drums/drums_ride",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-24": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-23": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-22": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-21": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-20": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-19": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-18": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-17": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-16": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-15": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-14": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-13": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-12": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-11": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c3.-10": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e3.-9": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e3.-8": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e3.-7": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g3.-6": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g3.-5": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g3.-4": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g3.-3": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4.-2": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c4.2": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e4.3": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e4.4": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e4.5": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g4.6": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g4.7": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g4.8": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g4.9": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5.10": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c5.14": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e5.15": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e5.16": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e5.17": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g5.18": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g5.19": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g5.20": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g5.21": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6.22": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.c6.26": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e6.27": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e6.28": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.e6.29": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g6.30": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "harmonica.g6.31": {
+    "sounds": [
+      {
+        "name": "chord:harmonica/harmonica_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0.-39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0.-38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0.-37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0.-36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.as0.-35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs1.-27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c2.-21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs2.-15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c3.-9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs3.-3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.-2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c4.3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs4.9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c5.15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs5.21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c6.27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs6.33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.c7.39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.40": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.41": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.42": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.43": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.44": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.45": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.46": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.47": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.fs7.48": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0.-39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0.-38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0.-37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0.-36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.as0.-35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs1.-27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c2.-21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs2.-15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c3.-9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs3.-3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.-2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c4.3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs4.9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c5.15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs5.21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c6.27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs6.33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.c7.39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.40": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.41": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.42": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.43": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.44": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.45": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.46": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.47": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.soft.fs7.48": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_soft_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0.-39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0.-38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0.-37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0.-36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.as0.-35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_as0",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs1.-27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs1",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c2.-21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs2.-15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c3.-9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs3.-3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.-2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.2": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c4.3": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.4": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.5": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.6": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.7": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.8": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs4.9": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.10": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.14": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c5.15": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.16": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.17": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.18": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.19": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.20": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs5.21": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.22": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.26": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c6.27": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.28": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.29": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.30": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.31": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.32": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs6.33": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.34": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.35": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.36": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.37": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.38": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.c7.39": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.40": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.41": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.42": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.43": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.44": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.45": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.46": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.47": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "piano.loud.fs7.48": {
+    "sounds": [
+      {
+        "name": "chord:piano/piano_loud_fs7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-20": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-19": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-18": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-17": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-16": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-15": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-14": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-13": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-12": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-11": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-10": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-9": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-8": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-7": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-6": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-5": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-4": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-3": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-2": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.-1": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.low.0": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_low_c3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.1": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.2": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.3": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.4": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.5": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.6": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.7": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.8": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.9": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.10": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.11": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.12": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.13": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.14": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.15": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.mid.16": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_mid_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.17": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.18": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.19": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.20": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.21": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.22": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.23": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.24": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.25": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.26": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.27": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "guitar.high.28": {
+    "sounds": [
+      {
+        "name": "chord:guitar/guitar_high_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-29": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-28": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-27": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-26": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-25": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-24": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-23": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-22": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-21": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-20": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-19": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-18": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-17": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-16": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-15": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-14": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-13": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.low.-12": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_low_c2",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-11": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-10": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-9": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-8": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-7": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-6": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-5": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-4": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-3": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-2": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.-1": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.0": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.1": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.2": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.mid.3": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_mid_e3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.4": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.5": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.6": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.7": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.8": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.9": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.10": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.11": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "bass.high.12": {
+    "sounds": [
+      {
+        "name": "chord:bass/bass_high_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g3.-5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a3.-4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a3.-3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a3.-2": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e4.2": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e4.3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e4.4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e4.5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g4.6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g4.7": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a4.8": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a4.9": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a4.10": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e5.14": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e5.15": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e5.16": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e5.17": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g5.18": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g5.19": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a5.20": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a5.21": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a5.22": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e6.26": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e6.27": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e6.28": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.e6.29": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g6.30": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.g6.31": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a6.32": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a6.33": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.a6.34": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.35": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.36": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.37": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.38": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.39": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.c7.40": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g3.-5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a3.-4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a3.-3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a3.-2": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a3",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c4.-1": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c4.0": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c4.1": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e4.2": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e4.3": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e4.4": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e4.5": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g4.6": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g4.7": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a4.8": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a4.9": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a4.10": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a4",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c5.11": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c5.12": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c5.13": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e5.14": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e5.15": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e5.16": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e5.17": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g5.18": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g5.19": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a5.20": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a5.21": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a5.22": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a5",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c6.23": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c6.24": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c6.25": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e6.26": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e6.27": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e6.28": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.e6.29": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_e6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g6.30": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.g6.31": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_g6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a6.32": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a6.33": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.a6.34": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_a6",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.35": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.36": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.37": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.38": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.39": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  },
+  "violin.soft.c7.40": {
+    "sounds": [
+      {
+        "name": "chord:violin/violin_soft_c7",
+        "volume": 1.0,
+        "pitch": 1.0,
+        "stream": false
+      }
+    ]
+  }
+}

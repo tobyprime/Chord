@@ -1,0 +1,12 @@
+* text=auto
+
+# 构建脚本行敏感（Linux 执行 gradlew 必须 LF）
+gradlew text eol=lf
+gradlew.bat text eol=crlf
+
+*.jar binary
+*.ogg binary
+*.wav binary
+*.mid binary
+*.png binary
+*.zip binary

@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pyyaml (gen-sounds-json.py)
+        run: pip install pyyaml
+
+      - name: Set up Gradle (dependency caching)
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build (protocol + fabric + plugin)
+        run: ./gradlew build --no-daemon
+
+      - name: Check sounds.json is in sync with instruments.yml
+        run: |
+          python tools/gen-sounds-json.py
+          git diff --exit-code assets/resourcepack/assets/chord/sounds.json
+
+      - name: Pack chord.zip
+        run: python tools/build-pack.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: chord-${{ github.sha }}
+          path: |
+            fabric/build/libs/fabric-*.jar
+            plugin/build/libs/plugin-*.jar
+            assets/resourcepack/chord.zip
+          if-no-files-found: error
