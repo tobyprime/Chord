@@ -9,7 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import org.lwjgl.glfw.GLFW;
+
 
 import java.util.List;
 
@@ -32,6 +32,18 @@ public final class ChordClient implements ClientModInitializer {
     public static final KeyMapping.Category CHORD_CATEGORY =
             KeyMapping.Category.register(Identifier.fromNamespaceAndPath("chord", "instrument"));
 
+    /**
+     * 输入类型：26.3 起 InputConstants.Type.KEYSYM 改名 KEYBOARD（枚举值等价）。
+     * 按名称探测让同一份字节码跨 26.2/26.3 运行（allinone jar 不需要 26.3 overlay）。
+     */
+    static InputConstants.Type keyType() {
+        try {
+            return InputConstants.Type.valueOf("KEYBOARD");
+        } catch (IllegalArgumentException e) {
+            return InputConstants.Type.valueOf("KEYSYM");
+        }
+    }
+
     @Override
     public void onInitializeClient() {
         ChordPayloads.init();
@@ -43,8 +55,8 @@ public final class ChordClient implements ClientModInitializer {
         // 演奏配置页入口（默认 J，任意时刻可开；正在演奏时打开会照常松开按住的音）
         configKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.chord.config",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_J,
+                keyType(),
+                keyCode("key.keyboard.j"),
                 CHORD_CATEGORY));
         net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK
                 .register(client -> {
@@ -56,13 +68,19 @@ public final class ChordClient implements ClientModInitializer {
         net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(PlayState::tick);
 
         // 右键举起：手持 Chord 乐器时接管使用键（阻止山羊角原生吹奏）；
-        // 演奏态内（含钢琴等世界乐器）右键是「升八度」修饰键，一律阻止使用。
+        // 演奏态内（含钢琴等世界乐器）右键是「升八度」修饰键，一律阻止使用；
+        // 蹲下+右键放行原版交互：手持乐器时仍可放置 CraftEngine 家具等（不被举起顶掉）。
         UseItemCallback.EVENT.register((player, level, hand) -> {
             if (hand != InteractionHand.MAIN_HAND) {
                 return InteractionResult.PASS;
             }
             if (PlayState.isPlaying()) {
                 return InteractionResult.FAIL;
+            }
+            // 蹲下即演奏态退出条件（PlayState.tick），走到这里必然已不在演奏态；
+            // 放行让手持乐器时仍能正常放置方块/家具、与方块交互
+            if (player.isShiftKeyDown()) {
+                return InteractionResult.PASS;
             }
             if (!PlayState.isInstrument(player.getItemInHand(hand))) {
                 return InteractionResult.PASS;
@@ -77,10 +95,10 @@ public final class ChordClient implements ClientModInitializer {
     /** 把 chord.json 的输入配置应用到演奏态（启动与配置页保存共用）。 */
     static void applyInputConfig() {
         PlayState.initSlots(config.slots);
-        PlayState.setAutoKey(keyCodeOf(config.autoKey, GLFW.GLFW_KEY_G));
-        PlayState.setPedalKey(keyCodeOf(config.pedalKey, GLFW.GLFW_KEY_K));
-        PlayState.setLatchKeys(keyCodeOf(config.latchHighKey, GLFW.GLFW_KEY_I),
-                keyCodeOf(config.latchLowKey, GLFW.GLFW_KEY_U));
+        PlayState.setAutoKey(keyCodeOf(config.autoKey, "key.keyboard.g"));
+        PlayState.setPedalKey(keyCodeOf(config.pedalKey, "key.keyboard.k"));
+        PlayState.setLatchKeys(keyCodeOf(config.latchHighKey, "key.keyboard.i"),
+                keyCodeOf(config.latchLowKey, "key.keyboard.u"));
     }
 
     /** 演奏配置页保存：写入 chord.json 并立即生效（正在演奏先退出演奏态）。 */
@@ -98,16 +116,20 @@ public final class ChordClient implements ClientModInitializer {
         applyInputConfig();
     }
 
-    /** 键名（"key.keyboard.z"）→ GLFW 键码；空/非法回落默认值。 */
-    static int keyCodeOf(String keyName, int fallback) {
-        if (keyName == null || keyName.isBlank()) {
-            return fallback;
+    /**
+     * 键名（"key.keyboard.z"）→ 键码；空/非法回落 defaultName。
+     * 一律运行时解析：26.3 起键码整体重编号（弃 GLFW），KEY_* 常量内联会跨版本错位。
+     */
+    static int keyCodeOf(String keyName, String defaultName) {
+        return keyCode(keyName == null || keyName.isBlank() ? defaultName : keyName);
+    }
+
+    /** 键名 → 键码（非法名抛异常，调用方兜底）。 */
+    static int keyCode(String name) {
+        int value = InputConstants.getKey(name).getValue();
+        if (value == InputConstants.UNKNOWN.getValue()) {
+            throw new IllegalArgumentException("未知键名: " + name);
         }
-        try {
-            int value = InputConstants.getKey(keyName).getValue();
-            return value == InputConstants.UNKNOWN.getValue() ? fallback : value;
-        } catch (Exception e) {
-            return fallback;
-        }
+        return value;
     }
 }

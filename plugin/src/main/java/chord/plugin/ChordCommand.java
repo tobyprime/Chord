@@ -99,6 +99,8 @@ public final class ChordCommand implements CommandExecutor, TabCompleter {
                         + (tail8 == 1 ? "§a，等dB尾音+电平补偿，rel " + relGrades + " 档§7"
                                       : "§e，旧尾音路由（jar/yml/zip 必须同期更换，错位=无声或重击）§7")
                         + "） §7（" + instrumentSummary() + "§7）");
+                sender.sendMessage("§a制音: §e" + plugin.playListener().damperModeName()
+                        + " §7尾音延迟 §e" + plugin.playListener().tailDelayMs() + " ms§7（effects.piano-damper-mode / piano-tail-delay-ms）");
                 for (String problem : plugin.instruments().problems()) {
                     sender.sendMessage("§e⚠ " + problem);
                 }

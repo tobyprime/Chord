@@ -103,7 +103,7 @@ public final class Instrument {
     }
 
     /**
-     * 制音尾音行（instruments.yml 的 release-voices）：区间 + base-pitch + 八档同源
+     * 制音尾音行（instruments.yml 的 release-voices）：区间 + base-pitch + 多档同源
      * 尾音（0.7.16b）。「素材位置=保持时长」原则：gradeHeldMs[i] = 素材 i 在主采样中
      * 的源位置毫秒数，松键时按 gradeFor 的 prev/next 混合规则选档；再按主采样实测电平曲线
      * （levelMs/levelDb，200ms 步进 100ms 窗 RMS）插值出 gain = level(素材位置) −
@@ -111,12 +111,19 @@ public final class Instrument {
      * 的琴」。割裂感历史：三档固定阈值（<1.2s/<2.4s）与各锚点采样时长脱节，0.77s
      * 保持被给 0.5s 素材实测跳升 3dB（2026-10-08 视频）。素材天然电平不归一；
      * gradeHeldMs 缺省时回落三档阈值（旧配置兼容）。
+     *
+     * <p>0.8.1 起素材统一带 100ms/-6dB 压头（重切自 tools/piano-endings.py）——服务端
+     * 松键先播尾音、主音延迟 2 tick 才 stopSound，相关信号叠加会把衔接处鼓 +2~3dB
+     * 被听成「又弹一下」；压头把重叠期的和包络压平。{@code shortSound} 为短保持
+     * 专用 0.3s 短尾（short-sound，断奏=制音器快速掐弦），松键保持时长低于
+     * PlayMessageListener#SHORT_TAIL_HELD_MS 时改播它。
      */
     public record ReleaseVoice(int min, int max, double basePitch, List<String> sounds,
-                               long[] gradeHeldMs, long[] levelMs, double[] levelDb) {
+                               long[] gradeHeldMs, long[] levelMs, double[] levelDb,
+                               String shortSound) {
 
         public ReleaseVoice(int min, int max, double basePitch, List<String> sounds) {
-            this(min, max, basePitch, sounds, new long[0], new long[0], new double[0]);
+            this(min, max, basePitch, sounds, new long[0], new long[0], new double[0], null);
         }
 
         public boolean contains(int semitone) {
@@ -165,42 +172,73 @@ public final class Instrument {
             return sounds.get(gradeFor(heldMs));
         }
 
-        /**
-         * 尾音响度补偿因子（≤1，MC volume>1 不增益故不放大）：电平曲线上
-         * level(保持时刻) − level(素材位置) 的 dB 差折算——floor 选档下素材
-         * 位置早于保持时刻、素材天然更响，按差值压回松键那一刻的电平。
-         * 曲线缺省或差为正（极短保持、素材晚于松键需放大）时返回 1。
-         */
-        public float tailGain(long heldMs, int grade) {
-            if (levelMs == null || levelDb == null || levelMs.length < 2
-                    || levelMs.length != levelDb.length || heldMs <= 0) {
-                return 1.0f;
-            }
-            long posMs = (gradeHeldMs != null && gradeHeldMs.length > 0)
-                    ? gradeHeldMs[Math.min(grade, gradeHeldMs.length - 1)] : 0;
-            double gainDb = levelAt(heldMs) - levelAt(posMs);
-            return gainDb >= 0 ? 1.0f : (float) Math.pow(10.0, gainDb / 20.0);
+    /**
+     * tail 模式配平：主音在 heldMs+delayMs 退出（对冲窗=电平曲线「再降 6dB」时长），
+     * 尾音实例在该瞬间的内容位置 = 素材位置+delayMs——按电平曲线把两者拉平，
+     * 台阶钉在交叉淡化地板 −3dB（Δ=0）。与旧版 tailGain（配平松键时刻）的区别：
+     * 旧目标在对冲窗 100ms、引擎时延 30~125ms 方差下必失配（台阶 −2~−10dB 随机，
+     * 2026-10-09 本地复现定案）；新目标随 delayMs 深入低电平区，L 方差影响按比例缩小。
+     * gain ≤1（MC 音量 >1 无增益）：差为正=素材位更响，压回；曲线缺省=1。
+     */
+    public float tailExitGain(long heldMs, long delayMs, int grade, boolean shortTail) {
+        if (levelMs == null || levelDb == null || levelMs.length < 2
+                || levelMs.length != levelDb.length || heldMs <= 0) {
+            return 1.0f;
         }
+        long posMs;
+        if (shortTail) {
+            posMs = gradeHeldMs != null && gradeHeldMs.length > 0 ? gradeHeldMs[0] : 0;
+        } else if (gradeHeldMs != null && gradeHeldMs.length > 0) {
+            posMs = gradeHeldMs[Math.min(grade, gradeHeldMs.length - 1)];
+        } else {
+            posMs = 0;
+        }
+        double gainDb = levelAt(heldMs + delayMs) - levelAt(posMs + delayMs);
+        return gainDb >= 0 ? 1.0f : (float) Math.pow(10.0, gainDb / 20.0);
+    }
 
-        /** 电平曲线线性插值；末端按最后两点斜率外推（钳 −24dB 防发散）。 */
-        private double levelAt(long t) {
-            int last = levelMs.length - 1;
-            if (t <= levelMs[0]) {
-                return levelDb[0];
-            }
-            if (t >= levelMs[last]) {
-                long span = Math.max(1, levelMs[last] - levelMs[last - 1]);
-                double slope = (levelDb[last] - levelDb[last - 1]) / span;
-                double extra = slope * (t - levelMs[last]);
-                return levelDb[last] + Math.max(-24.0, Math.min(0.0, extra));
-            }
-            int hi = 1;
-            while (hi < levelMs.length && levelMs[hi] < t) {
-                hi++;
-            }
-            double f = (double) (t - levelMs[hi - 1]) / Math.max(1, levelMs[hi] - levelMs[hi - 1]);
-            return levelDb[hi - 1] + f * (levelDb[hi] - levelDb[hi - 1]);
+    /** 电平曲线线性插值；末端按最后两点斜率外推（钳 −24dB 防发散）。 */
+    private double levelAt(long t) {
+        int last = levelMs.length - 1;
+        if (t <= levelMs[0]) {
+            return levelDb[0];
         }
+        if (t >= levelMs[last]) {
+            long span = Math.max(1, levelMs[last] - levelMs[last - 1]);
+            double slope = (levelDb[last] - levelDb[last - 1]) / span;
+            double extra = slope * (t - levelMs[last]);
+            return levelDb[last] + Math.max(-24.0, Math.min(0.0, extra));
+        }
+        int hi = 1;
+        while (hi < levelMs.length && levelMs[hi] < t) {
+            hi++;
+        }
+        double f = (double) (t - levelMs[hi - 1]) / Math.max(1, levelMs[hi] - levelMs[hi - 1]);
+        return levelDb[hi - 1] + f * (levelDb[hi] - levelDb[hi - 1]);
+    }
+
+    /**
+     * natural-delay 制音（config effects.piano-damper-mode，0.8.1 默认）的迟切时长：
+     * 沿主采样电平曲线求「从松键时刻起再自然衰减 6dB」所需毫秒数，钳 120~600ms。
+     * 松键不播第二份尾音采样——主音继续自然衰减到台阶落进不可闻域后无声 stopSound。
+     * 依据（2026-10-09 本地复现）：两份独立引擎实例的交叠时序不可控（尾音可听起始
+     * 时延 30~125ms+ 且冷事件更大），交叉淡化的暴露台阶 = 10log10(1+10^(Δ/10))，
+     * 理论地板 −3dB 且要求退出瞬间等电平——实测基线 −2.7dB 已贴地板，任何素材/时序
+     * 参数只能在地板之上随机波动。曲线缺省回落 350ms。
+     */
+    public long dampDelayMs(long heldMs) {
+        if (levelMs == null || levelDb == null || levelMs.length < 2
+                || levelMs.length != levelDb.length || heldMs <= 0) {
+            return 350L;
+        }
+        double start = levelAt(heldMs);
+        for (long d = 120; d <= 600; d += 20) {
+            if (levelAt(heldMs + d) <= start - 6.0) {
+                return d;
+            }
+        }
+        return 600L;
+    }
 
         /** [0.5, 2.0]，与 Voice.pitchFor 同公式（fixed 不适用——尾音恒随半音变调）。 */
         public float pitchFor(int semitone) {

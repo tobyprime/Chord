@@ -134,13 +134,40 @@ def build_main(src: Path, out: Path):
           f" peak {peak_dbfs(out):.1f} dBFS")
 
 
-def build_tail(main_ogg: Path, out: Path, seg_start: float, seg_len=0.65, fade_out=0.4):
-    """制音尾音 = 主采样指定位置段 + 陡淡出，不做归一（0.7.8：保留天然电平衔接）。"""
-    run(["-i", main_ogg, "-af",
-         f"atrim={seg_start}:{seg_start + seg_len},asetpts=PTS-STARTPTS,"
-         f"afade=t=in:st=0:d=0.01,afade=t=out:st={seg_len - fade_out:.3f}:d={fade_out}",
-         "-c:a", "libvorbis", "-q:a", "5", "-ar", "44100", "-ac", "1"], out)
-    print(f"  {out.name}: 源位置 {seg_start:.2f}s  peak {peak_dbfs(out):.1f} dBFS")
+def build_tail(main_ogg: Path, out: Path, seg_start: float, seg_len=0.65, fade_out=0.4,
+               duck_db=0.0, duck_s=0.1):
+    """制音尾音 = 主采样指定位置段 + 可选压头 + 陡淡出，不做归一（0.7.8：保留天然电平衔接）。
+
+    压头（duck，0.8.1 试验后默认关闭）：起始压低 duck_db dB、duck_s 秒线性升回天然电平。
+    它只对「尾音先播、主音延迟停」的交叠方案有意义；direct（同刻切）方案下压头把
+    尾音入场压低 6dB，切口台阶从 −1dB 恶化到 −4.25dB（2026-10-09 本地复现实测），
+    故默认 0。若回到交叠类方案再启用。参数保留以便 A/B。
+    """
+    sr = 44100
+    x = load_pcm(main_ogg, sr)
+    i0 = int(seg_start * sr)
+    seg = x[i0: i0 + int(seg_len * sr)].copy()
+    n = len(seg)
+    fade_in = min(int(0.01 * sr), n)  # 10ms 防爆音（压头已把起始压低，此淡入只是保险）
+    if fade_in:
+        seg[:fade_in] *= np.linspace(0.0, 1.0, fade_in, endpoint=False)
+    nd = min(int(duck_s * sr), n)
+    seg[:nd] *= np.linspace(10 ** (-duck_db / 20.0), 1.0, nd)
+    fo = min(int(fade_out * sr), n)
+    if fo:
+        seg[n - fo:] *= np.linspace(1.0, 0.0, fo)
+    tmp = out.with_suffix(".tmp.wav")
+    import wave
+    with wave.open(str(tmp), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sr)
+        # load_pcm 返回的是 int16 刻度浮点（未归一化，level_curve 自行 /32768），直接取整回写
+        w.writeframes(np.clip(np.round(seg), -32768, 32767).astype(np.int16).tobytes())
+    run(["-i", tmp, "-c:a", "libvorbis", "-q:a", "5", "-ar", "44100", "-ac", "1"], out)
+    tmp.unlink()
+    print(f"  {out.name}: 源位置 {seg_start:.2f}s 长 {len(seg) / sr:.2f}s"
+          f" 压头 -{duck_db:.0f}dB/{duck_s * 1000:.0f}ms  peak {peak_dbfs(out):.1f} dBFS")
 
 
 def tail_positions(dur: float, start_s=0.18, cap_s=2.8):
@@ -288,6 +315,11 @@ def main():
         grades[key] = [int(p * 1000) for p in pos]
         for i, p in enumerate(pos):
             build_tail(main_ogg, OUT / f"piano_rel_{key}_t{i}.ogg", seg_start=p)
+        # 短保持专用短尾（0.8.1）：heldMs < 服务端 SHORT_TAIL_HELD_MS 时改播 ts——
+        # 断奏物理 = 制音器快速掐弦，不该让 0.65s 的近全电平尾音盖过 0.1~0.3s 的
+        # 短按（基线实测此区间「再弹一下」感最重）。切点同 t0、0.3s + 0.18s 陡淡出。
+        build_tail(main_ogg, OUT / f"piano_rel_{key}_ts.ogg",
+                   seg_start=pos[0], seg_len=0.3, fade_out=0.18)
 
     (SRC / "rel-grades.json").write_text(
         json.dumps(grades, ensure_ascii=False), encoding="utf-8")

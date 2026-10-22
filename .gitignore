@@ -22,3 +22,4 @@ tools/gradle-9.8.0/
 
 # ZCode 工作区文件
 .zcodeignore
+.zcode/

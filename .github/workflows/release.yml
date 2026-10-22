@@ -46,9 +46,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          fab="fabric/build/libs/fabric-${VERSION}.jar"
+          fab="build/libs/all/chord-fabric-${VERSION}.jar"
+          fab1="build/libs/1.21.11/chord-fabric-mc1.21.11-${VERSION}.jar"
+          fab2="build/libs/26.2/chord-fabric-mc26.2-${VERSION}.jar"
+          fab3="build/libs/26.3/chord-fabric-mc26.3-${VERSION}.jar"
           plug="plugin/build/libs/plugin-${VERSION}.jar"
           test -f "$fab" || { echo "缺少 $fab"; exit 1; }
+          test -f "$fab1" || { echo "缺少 $fab1"; exit 1; }
+          test -f "$fab2" || { echo "缺少 $fab2"; exit 1; }
+          test -f "$fab3" || { echo "缺少 $fab3"; exit 1; }
           test -f "$plug" || { echo "缺少 $plug"; exit 1; }
           gh release create "$GITHUB_REF_NAME" \
             --title "Chord ${VERSION}" \
@@ -56,8 +62,8 @@ jobs:
 
           ## 安装
           - **服务端**（Folia/Paper 26.2）：\`plugin-${VERSION}.jar\` 放入 \`plugins/\`，重启；下发 \`chord.zip\` 乐器采样资源包
-          - **演奏者**（Fabric 26.2）：\`fabric-${VERSION}.jar\` 放入 \`.minecraft/mods/\`
+          - **演奏者**（Fabric 1.21.11 / 26.2 / 26.3 通用）：\`chord-fabric-${VERSION}.jar\`（全版本合一，推荐）放入 \`.minecraft/mods/\`；或按游戏版本选单版本包 \`chord-fabric-mc<游戏版本>-${VERSION}.jar\`（与合一包二选一，同一游戏版本只装一个）
           - **聆听者**：零安装
 
           详细说明见 [README](https://github.com/${GITHUB_REPOSITORY}#readme)。采样来源与许可证（全部 CC0）见 \`assets/resourcepack/README.md\`。" \
-            "$fab" "$plug" assets/resourcepack/chord.zip
+            "$fab" "$fab1" "$fab2" "$fab3" "$plug" assets/resourcepack/chord.zip

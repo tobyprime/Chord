@@ -70,20 +70,30 @@ def main():
     lines = YML.read_text(encoding="utf-8").splitlines(True)
     start = next(i for i, l in enumerate(lines) if l.strip() == "release-voices:")
     end = next(i for i in range(start + 1, len(lines)) if "CraftEngine" in lines[i])
-    block = ["  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后\n",
-             "  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB\n",
-             "  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：\n",
+    # 吞掉 release-voices 前的历史遗留注释（多次改版累积的重复段落），只保留本次写入的
+    while start > 0 and lines[start - 1].lstrip().startswith("#"):
+        start -= 1
+    block = ["  # 制音尾音（0.8.1 压头 + 短保持短尾）：松键制音/松踏板/闷音时，stopSound\n",
+             "  # 硬切后叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线\n",
+             "  # 等间隔切档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：\n",
              "  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的\n",
              "  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑\n",
-             "  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。\n",
+             "  # + 单调化。全部尾音素材带 100ms/-6dB 压头（松键后尾音先播、主音延迟 2 tick\n",
+             "  # 才 stopSound，压头把重叠期的和包络压平，消除「又弹了一下」；duck 时长与\n",
+             "  # PlayMessageListener.MAIN_STOP_DELAY_TICKS 互锚）。short-sound = 短保持\n",
+             "  # （<SHORT_TAIL_HELD_MS）专用 0.3s 短尾（断奏=制音器快速掐弦）。\n",
+             "  # 改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。\n",
              "  release-voices:\n"]
     for key, held in grades.items():
         v = voices[key]
         lms, ldb = level_curve(OUT / f"piano_{key}.ogg")
         n = len(held)
         sounds = ", ".join(f'"chord:piano.rel.{key}.t{i}"' for i in range(n))
+        short = ""
+        if (OUT / f"piano_rel_{key}_ts.ogg").exists():
+            short = f' short-sound: "chord:piano.rel.{key}.ts",'
         block.append(f'    - {{ min: {v["min"]}, max: {v["max"]}, base-pitch: {v["base-pitch"]}, '
-                     f'held-ms: [{", ".join(map(str, held))}],\n')
+                     f'held-ms: [{", ".join(map(str, held))}],{short}\n')
         block.append(f'        level-ms: [{", ".join(map(str, lms))}],\n')
         block.append(f'        level-db: [{", ".join(map(str, ldb))}],\n')
         block.append(f'        sounds: [{sounds}] }}\n')

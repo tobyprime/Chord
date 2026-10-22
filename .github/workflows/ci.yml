@@ -47,7 +47,7 @@ jobs:
         with:
           name: chord-${{ github.sha }}
           path: |
-            fabric/build/libs/fabric-*.jar
+            build/libs/*/chord-fabric-*.jar
             plugin/build/libs/plugin-*.jar
             assets/resourcepack/chord.zip
           if-no-files-found: error

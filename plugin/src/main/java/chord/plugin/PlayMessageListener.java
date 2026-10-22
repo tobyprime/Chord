@@ -54,10 +54,11 @@ public final class PlayMessageListener implements PluginMessageListener {
     private static final int MAX_RINGING = 24;
 
     /**
-     * sustain 释放模式（钢琴）松键后的制音缓冲：模拟制音器落弦需要的时间，
-     * 期间被同半音重击或踏板踩下「接住」则取消制音。与客户端修饰键宽限窗口同值。
+     * 短保持阈值：松键时保持时长低于此值且尾音行配置了 short-sound，改播 0.3s
+     * 短尾（切点同 t0、更陡淡出）——断奏物理 = 制音器快速掐弦，不该让 0.65s 的
+     * 近全电平尾音盖过 0.1~0.3s 的短按（「再弹一下」感最重的区间，基线 2026-10-09）。
      */
-    private static final long MAIN_STOP_DELAY_TICKS = 2; // 松键尾音先播，主音延迟 100ms 才 stopSound
+    private static final long SHORT_TAIL_HELD_MS = 300;
 
     /**
      * 制音尾音增益。素材天然电平已与主音各衰减阶段对齐（按保持时长选档），
@@ -122,10 +123,24 @@ public final class PlayMessageListener implements PluginMessageListener {
     private static final class PendingStop {
         final ActiveNote note;
         io.papermc.paper.threadedregions.scheduler.ScheduledTask task;
-        boolean cancelled;
+        /** direct 负延迟（交叠）的毫秒级停主音任务，TAIL_SCHEDULER 线程上执行。 */
+        volatile java.util.concurrent.ScheduledFuture<?> msTask;
+        /** 区域线程与 TAIL_SCHEDULER 线程并发读写。 */
+        volatile boolean cancelled;
 
         PendingStop(ActiveNote note) {
             this.note = note;
+        }
+    }
+
+    /** 取消一个待停任务（Folia tick 任务 + direct 负延迟的 ms 任务）。 */
+    private static void cancelStop(PendingStop stop) {
+        stop.cancelled = true;
+        if (stop.task != null) {
+            stop.task.cancel();
+        }
+        if (stop.msTask != null) {
+            stop.msTask.cancel(false);
         }
     }
 
@@ -149,6 +164,34 @@ public final class PlayMessageListener implements PluginMessageListener {
     private final boolean includePerformer;
     private final boolean noteParticles;
     private final boolean autoParticles;
+    /**
+     * 钢琴（sustain 乐器）松键制音方式（config effects.piano-damper-mode）：
+     * direct（当前试验默认，0.8.1）= 松键播尾音采样，延迟 piano-tail-delay-ticks 后
+     *   stopSound 主音（0 tick = 同刻切）。拼接质量只取决于该延迟与尾音实例引擎
+     *   可听时延 L 的相对关系：延迟=L 时贴合，延迟<L 出静默缝，延迟>L 出交叠鼓包
+     *   （2026-10-09 本地复现 spec_l0.png / exp2 扫描）。
+     * natural-delay = 不播尾音采样，主音自然衰减 dampDelayMs 后无声收掉——单实例无拼接。
+     * tail-voices = 同 direct 但延迟独立配置（0.7.16j 对冲语义），台阶随时延方差波动。
+     */
+    private enum DamperMode { DIRECT, NATURAL_DELAY, TAIL_VOICES }
+
+    private final DamperMode damperMode;
+    /**
+     * 尾音延迟（config effects.piano-tail-delay-ms，direct 模式生效，毫秒级）：
+     * 松键**先 stopSound 主音，延迟 n 毫秒后再 playSound 尾音**——手调切口的时序。
+     * 0=停完即放（同批次）；n>0 在主音停止与尾音起振之间留出可听静默（缝 = n + 尾音
+     * 实例引擎时延 L）。ms 精度靠专用调度线程异步发包（playSound/stopSound 仅入
+     * 连接队列，离线玩家异常由 try/catch 兜底）；客户端音频按帧启动，可听粒度仍是
+     * 一帧（~50ms）。/chord reload 重建本监听器=热生效。
+     */
+    private final int tailDelayMs;
+    /** direct 模式毫秒级尾音延迟的专用发送线程（仅入玩家连接队列，不碰世界状态）。 */
+    private static final java.util.concurrent.ScheduledExecutorService TAIL_SCHEDULER =
+            java.util.concurrent.Executors.newSingleThreadScheduledExecutor(r -> {
+                Thread t = new Thread(r, "Chord-Tail-Delay");
+                t.setDaemon(true);
+                return t;
+            });
     /** 粒子发送只告警一次（避免每音符刷日志）。 */
     private boolean particlesWarned;
 
@@ -161,7 +204,22 @@ public final class PlayMessageListener implements PluginMessageListener {
         this.includePerformer = plugin.getConfig().getBoolean("broadcast.include-performer", true);
         this.noteParticles = plugin.getConfig().getBoolean("effects.note-particles", true);
         this.autoParticles = plugin.getConfig().getBoolean("effects.auto-particles", true);
+        this.damperMode = parseDamperMode(plugin.getConfig().getString("effects.piano-damper-mode", "direct"));
+        this.tailDelayMs = Math.max(-500, Math.min(2000,
+                plugin.getConfig().getInt("effects.piano-tail-delay-ms", 0)));
     }
+
+    private static DamperMode parseDamperMode(String raw) {
+        if (raw == null) {
+            return DamperMode.DIRECT;
+        }
+        return switch (raw.trim().toLowerCase(java.util.Locale.ROOT)) {
+            case "natural-delay" -> DamperMode.NATURAL_DELAY;
+            case "tail-voices" -> DamperMode.TAIL_VOICES;
+            default -> DamperMode.DIRECT;
+        };
+    }
+
 
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
@@ -204,12 +262,13 @@ public final class PlayMessageListener implements PluginMessageListener {
             ActiveNote stopped = mine.remove(note.semitone);
             if (forceStop) {
                 // 硬止音（闷音键/退出演奏态）：活跃、余音、制音缓冲一律掐掉
+                //（natural-delay 下闷音语义=立即静，不叠尾音；tail-voices 下叠尾音）
                 if (stopped != null) {
-                    broadcastStop(stopped, true);
+                    broadcastStop(stopped, damperMode == DamperMode.TAIL_VOICES);
                 }
                 ActiveNote ringing = ring.remove(note.semitone);
                 if (ringing != null) {
-                    broadcastStop(ringing, true);
+                    broadcastStop(ringing, damperMode == DamperMode.TAIL_VOICES);
                 }
                 stopPending(player, note.semitone);
             } else if (stopped != null) {
@@ -400,33 +459,76 @@ public final class PlayMessageListener implements PluginMessageListener {
                     if (stop.cancelled) {
                         continue;
                     }
-                    if (stop.task != null) {
-                        stop.task.cancel();
-                    }
+                    cancelStop(stop);
                     putRinging(player, ring, e.getKey(), stop.note);
                 }
                 pending.clear();
             }
         } else {
-            for (ActiveNote note : ring.values()) {
-                broadcastStop(note, true);
+            for (Map.Entry<Integer, ActiveNote> e : ring.entrySet()) {
+                if (damperMode == DamperMode.NATURAL_DELAY) {
+                    // natural-delay：主音仍在响——不引入第二份声音，转入制音缓冲按曲线迟切。
+                    // 踏板接住的音（键已松、主音未停）由此获得无缝延音→衰减过渡。
+                    schedulePendingStop(player, e.getKey(), e.getValue());
+                } else {
+                    // direct / tail-voices：松踏板掐余音，叠尾音软化硬切
+                    broadcastStop(e.getValue(), true);
+                }
             }
             ring.clear();
         }
     }
 
-    /** sustain 松键 → 制音尾音立即起播，主音 MAIN_STOP_DELAY_TICKS 后才 stopSound。
-     *  时序对冲：MC 客户端音频引擎对新 playSound 实例有 30~100ms 启动延迟，若先
-     *  stopSound 主音再播尾音，衔接处会出现 30~100ms 的响度缺口（2026-10-08 用户
-     *  实测频谱 V 形坑）；让主音的持续发声盖住尾音的启动空窗，缺口变成被掩蔽的
-     *  轻微叠加。heldMs 在松键时刻立即计算（旧版延迟后计算会虚增一个缓冲时长）。
-     *  同半音重击/闷音经 stopPending 取消本任务，不会误杀新音。 */
+    /**
+     * sustain 松键 → 按制音模式分流（见 {@link DamperMode}）。
+     *
+     * <p>direct：同刻播尾音 + 立即停主音，无对冲窗、无待停任务。拼接缝 = 尾音实例的
+     * 引擎可听时延 L（warm 事件小、冷首击大——本次试验的实测项）。
+     *
+     * <p>natural-delay：不引入第二个声音——主音自然衰减 dampDelayMs（电平曲线求
+     * 「再降 6dB」时长，120~600ms）后无声 stopSound，衔接在构造上连续。
+     *
+     * <p>tail-voices：同 direct 的「尾音先行 + 延迟停主音」，延迟取同一旋钮
+     * （piano-tail-delay-ticks）。heldMs 在松键时刻立即计算（延迟后计算会虚增缓冲
+     * 时长）。同半音重击/闷音经 stopPending 取消本任务，不会误杀新音。
+     */
     private void schedulePendingStop(Player player, int semitone, ActiveNote note) {
+        long heldMs = System.currentTimeMillis() - note.startedAt;
+        if (damperMode == DamperMode.DIRECT) {
+            if (tailDelayMs >= 0) {
+                // n ≥ 0：主音先停 → n ms 后放尾音（broadcastTail 内部毫秒级异步发送）
+                stopMainSound(note);
+                broadcastTail(player, note, heldMs);
+                return;
+            }
+            // n < 0 = 交叠：尾音立即响，|n| ms 后才停主音。可被同半音重击/踏板接住/收尾取消
+            //（重击掩蔽新起振；踏板接住时主音还在响=无缝延音）。ms 任务只发停音包，
+            // 不碰 pendingStops 表（HashMap 仅区域线程读写），表项由区域线程路径清理。
+            UUID playerId = player.getUniqueId();
+            Map<Integer, PendingStop> pending = pendingStops.computeIfAbsent(playerId, k -> new HashMap<>());
+            PendingStop stop = new PendingStop(note);
+            pending.put(semitone, stop);
+            broadcastTail(player, note, heldMs);
+            stop.msTask = TAIL_SCHEDULER.schedule(() -> {
+                if (stop.cancelled) {
+                    return;
+                }
+                stopMainSound(note);
+            }, -tailDelayMs, java.util.concurrent.TimeUnit.MILLISECONDS);
+            return;
+        }
         UUID playerId = player.getUniqueId();
         Map<Integer, PendingStop> pending = pendingStops.computeIfAbsent(playerId, k -> new HashMap<>());
         PendingStop stop = new PendingStop(note);
         pending.put(semitone, stop);
-        broadcastTail(player, note, System.currentTimeMillis() - note.startedAt);
+        long ticks;
+        if (damperMode == DamperMode.NATURAL_DELAY) {
+            ticks = dampDelayTicks(note, heldMs);
+        } else {
+            // tail-voices（0.7.16j 对冲语义）：尾音先行 + 主音 2 tick 后停
+            broadcastTail(player, note, heldMs);
+            ticks = 2;
+        }
         stop.task = player.getScheduler().runDelayed(plugin, task -> {
             if (stop.cancelled) {
                 return;
@@ -439,7 +541,23 @@ public final class PlayMessageListener implements PluginMessageListener {
         }, () -> {
             // 演奏者实体失效（退出/掉线）：forget() 会统一收尾
             stop.cancelled = true;
-        }, MAIN_STOP_DELAY_TICKS);
+        }, ticks);
+    }
+
+    /** natural-delay 迟切 tick 数：电平曲线求「再降 6dB」毫秒数（120~600ms），换算 tick 钳 3~12。 */
+    private long dampDelayTicks(ActiveNote note, long heldMs) {
+        long ms = note.releaseVoice != null ? note.releaseVoice.dampDelayMs(heldMs) : 350L;
+        return Math.max(3, Math.min(12, (ms + 49) / 50));
+    }
+
+    /** reload 回显用：当前制音模式名。 */
+    public String damperModeName() {
+        return damperMode.name().toLowerCase(java.util.Locale.ROOT);
+    }
+
+    /** reload 回显用：当前尾音延迟毫秒数（direct 模式：主音停后 n ms 放尾音；0=停完即放）。 */
+    public int tailDelayMs() {
+        return tailDelayMs;
     }
 
     /** 立即取消并掐掉某半音的制音缓冲音（硬止音/同半音重击时调用）。 */
@@ -452,10 +570,7 @@ public final class PlayMessageListener implements PluginMessageListener {
         if (stop == null || stop.cancelled) {
             return;
         }
-        stop.cancelled = true;
-        if (stop.task != null) {
-            stop.task.cancel();
-        }
+        cancelStop(stop);
         broadcastStop(stop.note);
     }
 
@@ -563,10 +678,7 @@ public final class PlayMessageListener implements PluginMessageListener {
         Map<Integer, PendingStop> pending = pendingStops.remove(playerId);
         if (pending != null) {
             for (PendingStop stop : pending.values()) {
-                stop.cancelled = true;
-                if (stop.task != null) {
-                    stop.task.cancel();
-                }
+                cancelStop(stop);
                 broadcastStop(stop.note);
             }
         }
@@ -644,13 +756,35 @@ public final class PlayMessageListener implements PluginMessageListener {
             // 尾音跟主音同源：世界乐器=琴的锚点（note.on 定格）；手持乐器=演奏者实时位置
             Location at = note.source != null ? note.source
                     : performer != null ? performer.getLocation() : listener.getLocation();
+            // 短保持（断奏）走 0.3s 短尾：素材切点同 t0（gradeHeldMs[0]），增益按第 0 档曲线折算
+            boolean shortTail = heldMs < SHORT_TAIL_HELD_MS && note.releaseVoice.shortSound() != null;
             int grade = note.releaseVoice.gradeFor(heldMs);
             // 响度补偿：素材取自「素材位置」的天然电平，按实测衰减曲线把
-            // level(素材位置)−level(保持时刻) 的差折成 volume（≤1，恒减益）
-            float gain = note.releaseVoice.tailGain(heldMs, grade);
-            String relEvent = note.releaseVoice.sounds().get(grade);
-            listener.playSound(at, relEvent, note.category,
-                    note.releaseVolume * gain, note.releasePitch);
+            // level(素材位置)−level(松键) 的差折成 volume（≤1，恒减益）。
+            // delayMs=0 = 配平松键时刻（direct/短保持的语义；交叠方案才用退出时刻配平）
+            float gain = note.releaseVoice.tailExitGain(heldMs, 0L, shortTail ? 0 : grade, shortTail);
+            String relEvent = shortTail
+                    ? note.releaseVoice.shortSound()
+                    : note.releaseVoice.sounds().get(grade);
+            float volume = note.releaseVolume * gain;
+            if (damperMode == DamperMode.DIRECT && tailDelayMs > 0) {
+                // direct 延迟：冻结参数后由专用线程毫秒级异步发包（playSound 仅入
+                // 连接队列，不碰世界状态；离线玩家异常由 try/catch 兜底）。
+                // 用户手调语义：主音已停，n ms 后尾音才起振（缝 = n + 引擎时延 L）。
+                final Location atF = at.clone();
+                final String evF = relEvent;
+                final float volF = volume, pitF = note.releasePitch;
+                final var catF = note.category;
+                TAIL_SCHEDULER.schedule(() -> {
+                    try {
+                        listener.playSound(atF, evF, catF, volF, pitF);
+                    } catch (Exception ex) {
+                        // 玩家已离线等：静默丢弃（延迟期内的正常竞态）
+                    }
+                }, tailDelayMs, java.util.concurrent.TimeUnit.MILLISECONDS);
+                return;
+            }
+            listener.playSound(at, relEvent, note.category, volume, note.releasePitch);
         } catch (Exception e) {
             // 尾音播放失败（事件越界/客户端包缺失等）必须可见：症状=松键硬切无声
             plugin.getLogger().log(Level.WARNING, "制音尾音播放失败 held=" + heldMs

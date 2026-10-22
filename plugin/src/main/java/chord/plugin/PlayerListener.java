@@ -18,7 +18,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 /**
  * 玩家事件：握手时机（入服 + 客户端注册频道）、离线清理、
- * 以及非演奏者手持 Chord 乐器时的原生交互兜底取消（防山羊角原生吹奏）。
+ * 以及非演奏者手持 Chord 乐器时的原生交互兜底取消（防山羊角原生吹奏；
+ * 蹲下放行原版交互，与客户端模组的右键接管规则一致）。
  */
 public final class PlayerListener implements Listener {
 
@@ -52,6 +53,11 @@ public final class PlayerListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
+        // 蹲下 = 原版交互放行（客户端模组同样规则）：手持乐器仍可放置 CraftEngine
+        // 家具等。原版客户端蹲下持乐器会触发原生山羊角音，是放行的已知代价。
+        if (event.getPlayer().isSneaking()) {
+            return;
+        }
         ItemStack item = event.getItem();
         if (item == null) {
             return;

@@ -12,9 +12,10 @@
 
 ```
 protocol/   共享协议模块（chord:play / chord:sync 的编解码，纯 Java 零依赖）
-fabric/     客户端 Fabric 模组（演奏态、键位、HUD、发包）
+fabric/     客户端 Fabric 模组共享源码（演奏态、键位、HUD、发包）
+fabric/versions/<mc>/   各 MC 版本子项目（gradle.properties + 版本差异源码 overlay）
 plugin/     Folia/Paper 插件（Messenger 接收、voices 音色路由、限速、命令）
-assets/resourcepack/   乐器采样资源包（口琴/钢琴/吉他/贝斯/小提琴/架子鼓，服务端资源包体系使用）
+assets/resourcepack/   乐器采样资源包（口琴/钢琴/吉他/贝斯/小提琴/唢呐/架子鼓，服务端资源包体系使用）
 docs/       设计文档与测试清单
 tools/      资源包构建与采样复取脚本（gen-sounds-json、build-pack、各乐器 rebuild）
 ```
@@ -25,33 +26,37 @@ tools/      资源包构建与采样复取脚本（gen-sounds-json、build-pack�
 
 | 文件 | 用途 | 放置位置 |
 |---|---|---|
-| `fabric-<版本>.jar` | 演奏者客户端模组 | `.minecraft/mods/` |
+| `chord-fabric-<版本>.jar` | 演奏者客户端模组，**全版本合一**（1.21.11 / 26.2 / 26.3 一个文件，装模组时自动识别游戏版本） | `.minecraft/mods/` |
+| `chord-fabric-mc<游戏版本>-<版本>.jar` | 同上，按游戏版本拆分的单版本包（与合一包二选一，同一游戏版本只装一个） | `.minecraft/mods/` |
 | `plugin-<版本>.jar` | 服务端 Folia/Paper 插件 | 服务器 `plugins/` |
 | `chord.zip` | 乐器采样资源包 | 服务端下发（见下文部署） |
 
 ## 构建（开发者）
 
-需要 JDK 25（protocol 模块编译目标 21）。首次构建会下载 Minecraft 与依赖，耗时较长；push/PR 由 CI 自动构建。
+需要 JDK 25。多版本接线参照 Mcedia：共享源码在 `fabric/src/`，各版本差异以**文件级 overlay** 放在 `fabric/versions/<mc>/src/`（同名路径版本目录优先）；26.x 走 `build.fabric.gradle`（免重映射），1.21.x 走 `build.fabric.remap.gradle`（mojmap + remapJar）。新增支持版本 = 加一个 `fabric/versions/<mc>/gradle.properties`（必要时补 overlay）并在根 `gradle.properties` 的 `supported_mc_versions` 里登记。
 
 ```bash
-./gradlew build                # 产物 fabric/build/libs/fabric-0.8.0.jar 与 plugin/build/libs/plugin-0.8.0.jar（均含打包的 protocol）
+./gradlew build                     # 全部版本 + 插件
+./gradlew :fabric-26.2:buildAndCollect :fabric-26.3:buildAndCollect :fabric-1.21.11:buildAndCollect
+                                    # 模组产物归拢到 build/libs/<mc>/chord-fabric-mc<mc>-<版本>.jar
+# 插件产物 plugin/build/libs/plugin-<版本>.jar（均含打包的 protocol）
 python tools/gen-sounds-json.py   # instruments.yml → 资源包 sounds.json（需 pyyaml）
 python tools/build-pack.py        # assets/resourcepack/ → chord.zip（改采样/instruments 后重新打包）
 ```
 
 ## 部署
 
-1. **服务端**（Folia/Paper 26.2）：放入 `plugin-0.8.0.jar`，重启。生成 `plugins/Chord/{config.yml,instruments.yml}`。
-2. **音色**：下发 Release 里的 `chord.zip`（约 3.7MB、654 采样事件；也可用 `tools/build-pack.py` 从 `assets/resourcepack/` 打包，**勿手工压缩整个 resourcepack 目录**——会混入开发留档与说明文件）或把 zip 里的 `pack.mcmeta + assets/` 并入服务器既有资源包，`instruments.yml` 的 `voices.sound` 指向 `chord:` 命名空间的采样事件（逐半音事件表由 `tools/gen-sounds-json.py` 从 instruments.yml 生成）。**联调期可把 voices 的 sound 全换成 `block.note_block.bit` 占位，无需资源包即可跑通全链路。**
+1. **服务端**（Folia/Paper 26.2）：放入 `plugin-0.8.1.jar`，重启。生成 `plugins/Chord/{config.yml,instruments.yml}`。**`plugins/` 里只留一个 Chord jar**——新旧 jar 同名（`name: Chord`）时 Bukkit 只加载其一，旧 jar 留场会静默顶掉新功能。
+2. **音色**：下发 Release 里的 `chord.zip`（约 4.2MB、711 采样事件；也可用 `tools/build-pack.py` 从 `assets/resourcepack/` 打包，**勿手工压缩整个 resourcepack 目录**——会混入开发留档与说明文件）或把 zip 里的 `pack.mcmeta + assets/` 并入服务器既有资源包，`instruments.yml` 的 `voices.sound` 指向 `chord:` 命名空间的采样事件（逐半音事件表由 `tools/gen-sounds-json.py` 从 instruments.yml 生成）。**联调期可把 voices 的 sound 全换成 `block.note_block.bit` 占位，无需资源包即可跑通全链路。**
 3. **发放乐器**：`/chord give <harmonica|guitar|bass> [玩家]`（`chord.admin`）；钢琴/架子鼓是世界装置，用 CraftEngine 家具（world-bind）或 `/chord piano spawn [piano|drums]` 放置。
-4. **演奏者**：安装 Chord 模组（放入 mods），手持乐器右键举起，按音级键演奏；蹲下或切换快捷栏退出。
+4. **演奏者**：安装 Chord 模组（放入 mods），手持乐器右键举起，按音级键演奏；蹲下或切换快捷栏退出。**蹲下+右键 = 原版交互放行**（手持乐器也能放置 CraftEngine 家具等，不触发举起）。
 5. **聆听者**：什么都不用装。
 
 ## 操作（默认三角洲键位）
 
 | 输入 | 效果 |
 |---|---|
-| 手持乐器右键 / 右键世界乐器装置（钢琴、架子鼓） | 举起，进入演奏态 |
+| 手持乐器右键 / 右键世界乐器装置（钢琴、架子鼓） | 举起，进入演奏态（**蹲下+右键除外**：放行原版交互，如放置 CE 家具） |
 | `Z X C V B N M ,` | 简谱 1 2 3 4 5 6 7 高音1 |
 | 按住鼠标左键 | 整排降八度（−12），与八度锁叠加可得低低音 |
 | 按住鼠标右键 | 整排升八度（+12），与八度锁叠加可得高高音 |
@@ -62,7 +67,7 @@ python tools/build-pack.py        # assets/resourcepack/ → chord.zip（改采�
 | `K`（踏板键，演奏配置页可改） | **钢琴**：按住 = 延音踏板（踩住期间松键的音延续，松开 K 掐掉所有余音）；**双击 K** 切换踏板模式——延音模式下松键默认延音、按住 K 变临时止音（长连奏不用一直踩着）；**吉他/鼓**：瞬时闷音掐掉全部声音 |
 | `I` / `U`（高/低八度锁，演奏配置页可改） | 按一次锁定 +12/−12（HUD 显示 ♯/♭ 指示），再按解锁；锁定后**按住鼠标右/左键修饰 = 高高音/低低音**（独立按键，不占用鼠标修饰键的手势） |
 | `J`（演奏配置页，原版按键设置可改） | 任意时刻打开**演奏配置页**——所有演奏输入的唯一配置入口，保存即生效 |
-| 蹲下 | 退出演奏态（钢琴还可走远 8 格自动退出） |
+| 蹲下 | 退出演奏态（钢琴还可走远 8 格自动退出）；手持乐器时蹲下+右键 = 原版交互放行，不触发举起 |
 | 切换快捷栏 | 退出演奏态（仅手持乐器形态） |
 
 - 音符时长 = 按键时长（按住持续、松开即停；超 2.5~3.2 秒采样自然结束；鼓件是一次性采样，敲一下响完为止）
@@ -137,7 +142,8 @@ python tools/build-pack.py        # assets/resourcepack/ → chord.zip（改采�
 
 本仓库代码以 [MIT](LICENSE) 协议开源。
 
-乐器采样全部来自 **CC0 1.0（公共领域）** 音色库，可随本仓库自由再分发、无署名义务（出处仍惯例列明如下）。
+乐器采样来自 **CC0 1.0（公共领域）** 音色库（唢呐除外——为本项目 `tools/suona-synth.py` 原创合成，无第三方素材），
+可随本仓库自由再分发、无署名义务（出处仍惯例列明如下）。
 每个乐器的来源目录、锁定 commit、逐锚点实测基频与 ffmpeg 处理管线，详见
 [assets/resourcepack/README.md](assets/resourcepack/README.md)；`tools/` 内有各乐器的采样重建脚本。
 
@@ -147,7 +153,8 @@ python tools/build-pack.py        # assets/resourcepack/ → chord.zip（改采�
 | 民谣吉他 | [freepats/spanish-classical-guitar](https://github.com/freepats/spanish-classical-guitar) | commit `6f4eb1b` |
 | 电贝斯 | [sfzinstruments/karoryfer.black-and-blue-basses](https://github.com/sfzinstruments/karoryfer.black-and-blue-basses) | commit `6e7d674` |
 | 小提琴 | [VSCO 2 CE — Versilian Community Orchestra 2, Community Edition](https://www.versilian-studios.com/vsco.html/)（SViolinVib patch） | 分发包 `VSCO-2.1-XRNI-20170216` |
+| 唢呐 | 本项目原创合成（`tools/suona-synth.py`，无第三方素材） | — |
 
-以上四个来源的许可证均为 CC0 1.0 Universal；候选库调研与排除原因（许可证不符/素材不适配）也记录在资源包 README 中。
+以上四个采样来源的许可证均为 CC0 1.0 Universal；候选库调研与排除原因（许可证不符/素材不适配）也记录在资源包 README 中。
 
 Minecraft 是 Mojang Studios 的商标，本项目与其无从属关系；CraftEngine 为第三方家具插件，为可选软依赖。

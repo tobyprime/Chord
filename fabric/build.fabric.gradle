@@ -1,0 +1,156 @@
+// Chord 客户端模组构建脚本 —— 26.x（无混淆，免重映射）。
+// 由 settings.gradle.kts 按 MC 版本挂到 fabric/versions/<mc>/ 子项目上；
+// 1.21.x 混淆版本走同目录的 build.fabric.remap.gradle。参照 Mcedia 的多版本方案。
+import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.api.tasks.Sync
+import org.gradle.api.tasks.Copy
+
+plugins {
+    id 'net.fabricmc.fabric-loom'
+}
+
+def mcVersion = project.property('minecraft_version').toString()
+def moduleProject = rootProject.findProject(':fabric')
+if (moduleProject == null) {
+    throw new GradleException('Missing shared source project :fabric')
+}
+def moduleRoot = moduleProject.projectDir
+def moduleProp = { String key -> moduleProject.property(key).toString() }
+def loaderVersion = project.property('loader_version').toString()
+def fabricApiVersion = project.property('fabric_api_version').toString()
+def targetJavaVersion = Integer.parseInt(project.property('java_version').toString())
+def versionRange = project.findProperty('minecraft_version_range') ?: mcVersion
+def artifactBaseName = "${moduleProp('archives_base_name')}-mc${mcVersion}"
+def finalJarName = "${artifactBaseName}-${project.version}.jar"
+
+// 版本目录源码优先覆盖共享源码（同名路径 duplicates EXCLUDE = 先到先得，版本目录在前）
+def generatedMainJavaDir = file("${buildDir}/generated/versionedSrc/${mcVersion}/main/java")
+def generatedMainResourcesDir = file("${buildDir}/generated/versionedSrc/${mcVersion}/main/resources")
+
+def syncVersionedMainSources = tasks.register('syncVersionedMainSources', Sync) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    into(file("${buildDir}/generated/versionedSrc/${mcVersion}/main"))
+    from(new File(project.projectDir, 'src/main/java')) {
+        into('java')
+    }
+    from(new File(project.projectDir, 'src/main/resources')) {
+        into('resources')
+    }
+    from(new File(moduleRoot, 'src/main/java')) {
+        into('java')
+    }
+    from(new File(moduleRoot, 'src/main/resources')) {
+        into('resources')
+    }
+}
+
+base {
+    archivesName = artifactBaseName
+}
+
+loom {
+    runs {
+        named('client') {
+            ideConfigGenerated(true)
+        }
+    }
+    mods {
+        chord {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.java.setSrcDirs([generatedMainJavaDir])
+sourceSets.main.resources.setSrcDirs([generatedMainResourcesDir])
+
+// ---- allinone（全版本合一 jar）支持：同一份源码再编译一份到版本化包名 chord.v26.client ----
+// 26.2/26.3 共享字节码成立的前提是零跨版本内联常量（键码一律按键名运行时解析）
+def mvPackage = 'chord.v26.client'
+def mvSrcDir = file("${buildDir}/generated/mvSrc")
+
+tasks.register('syncMvSources', Copy) {
+    dependsOn(syncVersionedMainSources)
+    from(generatedMainJavaDir) {
+        include '**/*.java'
+        filter { line ->
+            def out = line.replaceAll(/import chord\.client\./, "import ${mvPackage}.")
+            if (out.startsWith('package chord.client.mixin;')) {
+                out = "package ${mvPackage}.mixin;"
+            } else if (out.startsWith('package chord.client;')) {
+                out = "package ${mvPackage};"
+            }
+            return out
+        }
+    }
+    into(mvSrcDir)
+}
+
+sourceSets.main.java.srcDirs += mvSrcDir
+
+tasks.named('compileJava') {
+    dependsOn(syncVersionedMainSources, syncMvSources)
+}
+
+// 版本化副本导出（fabric-allinone 汇集用）
+tasks.register('exportMvClasses', Copy) {
+    dependsOn(tasks.named('compileJava'))
+    from({ sourceSets.main.java.classesDirectory.get().asFile })
+    include 'chord/v26/**'
+    into(rootProject.file('build/allinone-classes/v26'))
+}
+tasks.named('processResources') {
+    dependsOn(syncVersionedMainSources)
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${mcVersion}"
+    implementation "net.fabricmc:fabric-loader:${loaderVersion}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
+    // protocol 模块类直接打进 mod jar（单 jar 分发；纯 Java 无 MC 引用，免重映射安全）
+    implementation project(':protocol')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'minecraft_version', mcVersion
+    inputs.property 'minecraft_version_range', versionRange
+    filteringCharset 'UTF-8'
+    filesMatching('fabric.mod.json') {
+        expand(
+                version: project.version.toString(),
+                minecraft_version: mcVersion,
+                minecraft_version_range: versionRange.toString()
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(targetJavaVersion)
+}
+
+java {
+    if (JavaVersion.current() < JavaVersion.toVersion(targetJavaVersion)) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+jar {
+    // 执行期再取 protocol 产物（跨项目 sourceSets 不能在配置期访问）
+    from({ project(':protocol').extensions.getByType(org.gradle.api.tasks.SourceSetContainer).getByName('main').output })
+    archiveFileName = finalJarName
+}
+
+// 产物归拢到根 build/libs/<mc>/，CI 与本地取件同一路径
+tasks.register('buildAndCollect', Copy) {
+    group = 'build'
+    dependsOn('jar')
+    from({ tasks.named('jar').get().archiveFile.get().asFile })
+    into(rootProject.layout.buildDirectory.dir("libs/${mcVersion}"))
+}
+
+// 挂进 build 生命周期：./gradlew build 即归拢产物
+tasks.named('build') {
+    dependsOn('buildAndCollect')
+}

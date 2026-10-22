@@ -1,0 +1,120 @@
+// Chord 全版本合一 jar（allinone）：1.21.11 / 26.2 / 26.3 一个文件。
+//
+// 原理：jar 内携带两套版本化字节码——chord.v1211.client.*（1.21.x，intermediary
+// 命名，由 :fabric-1.21.11 的 remapJar 产出后提取）与 chord.v26.client.*（26.x，
+// 官方命名，26.2/26.3 共用同一套字节码——成立前提是共享源零跨版本内联常量），
+// 外加版本分发入口 chord.AllInOne 与 mixin 过滤插件 chord.AllInOneMixinGate。
+// 前提：:fabric-26.2 与 :fabric-1.21.11 已配置（evaluationDependsOn），共享
+// 源码在各自构建脚本里完成 mv 副本编译与 exportMvClasses 导出。
+import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.api.tasks.Copy
+
+plugins {
+    id 'java'
+}
+
+evaluationDependsOn(':fabric-26.2')
+evaluationDependsOn(':fabric-1.21.11')
+evaluationDependsOn(':protocol')
+
+def v26 = project(':fabric-26.2')
+def v1211 = project(':fabric-1.21.11')
+def modVersion = v26.version.toString()
+
+repositories {
+    maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
+}
+
+// gate 类只依赖 FabricLoader + sponge-mixin + ASM API（三者在各版本运行时由
+// loader/mixin 提供且接口稳定）；字节码定在 release 21（1.21.11 时代运行时）。
+// 不借版本项目的编译类路径——Gradle 9 禁止跨项目配置期解析
+dependencies {
+    compileOnly "net.fabricmc:fabric-loader:0.19.5"
+    compileOnly "net.fabricmc:sponge-mixin:0.16.5+mixin.0.8.7"
+    compileOnly "org.ow2.asm:asm-tree:9.7"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(21)
+}
+
+// 生成 fabric.mod.json 与两份 mixin 配置（带版本过滤插件）
+def resDir = file("${buildDir}/generated/allinone-res")
+
+tasks.register('generateManifests') {
+    doLast {
+        resDir.mkdirs()
+        def fmj = """
+{
+  "schemaVersion": 1,
+  "id": "chord",
+  "version": "${modVersion}",
+  "name": "Chord",
+  "description": "手持乐器，实时演奏；服务端插件负责广播，聆听者零安装。（全版本合一：1.21.11 / 26.2 / 26.3）",
+  "authors": ["Chord"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["chord.AllInOne"]
+  },
+  "mixins": ["chord.v26.mixins.json", "chord.v1211.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "fabric-api": "*",
+    "minecraft": [">=1.21.11 <1.22", ">=26.2 <26.4"]
+  }
+}
+"""
+        new File(resDir, 'fabric.mod.json').text = fmj.trim() + "\n"
+
+        def mixinJson = { String pkg ->
+            """
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "${pkg}",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "chord.AllInOneMixinGate",
+  "client": ["MinecraftMixin", "KeyboardHandlerMixin", "MouseHandlerMixin"],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+""".trim() + "\n"
+        }
+        new File(resDir, 'chord.v26.mixins.json').text = mixinJson('chord.v26.client.mixin')
+        new File(resDir, 'chord.v1211.mixins.json').text = mixinJson('chord.v1211.client.mixin')
+    }
+}
+
+jar {
+    dependsOn(generateManifests,
+            v26.tasks.named('exportMvClasses'),
+            v1211.tasks.named('exportMvClasses'))
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveFileName = "chord-fabric-${modVersion}.jar"
+    from(sourceSets.main.output)                                  // 分发入口 + mixin 过滤插件
+    from(resDir)                                                  // fabric.mod.json + 两份 mixin 配置
+    from(rootProject.file('build/allinone-classes/v26'))          // 26.x 套件（官方命名）
+    from(rootProject.file('build/allinone-classes/v1211'))        // 1.21.x 套件（intermediary 命名）
+    from({ project(':protocol').extensions.getByType(org.gradle.api.tasks.SourceSetContainer)
+            .getByName('main').output })                          // 共享协议模块（纯 Java）
+    from(rootProject.file('fabric/src/main/resources/assets')) {
+        into 'assets'                                             // 语言文件等共享资源（保持 assets/ 前缀）
+    }
+}
+
+// 产物归拢到根 build/libs/all/，CI 与本地取件同一路径
+tasks.register('buildAndCollect', Copy) {
+    group = 'build'
+    dependsOn(jar)
+    from({ tasks.named('jar').get().archiveFile.get().asFile })
+    into(rootProject.layout.buildDirectory.dir('libs/all'))
+}
+
+// 挂进 build 生命周期：./gradlew build 即归拢产物
+tasks.named('build') {
+    dependsOn('buildAndCollect')
+}

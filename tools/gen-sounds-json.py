@@ -122,6 +122,19 @@ BASE_OGG = {
     "violin.soft.g6": "violin/violin_soft_g6",
     "violin.soft.a6": "violin/violin_soft_a6",
     "violin.soft.c7": "violin/violin_soft_c7",
+    # 唢呐 11 锚点 C/E/G 网格（0.9.0，tools/suona-synth.py 原创合成；C4~G6），
+    # 重跑 tools/suona-synth.py 同步
+    "suona.c4": "suona/suona_c4",
+    "suona.e4": "suona/suona_e4",
+    "suona.g4": "suona/suona_g4",
+    "suona.a4": "suona/suona_a4",
+    "suona.c5": "suona/suona_c5",
+    "suona.e5": "suona/suona_e5",
+    "suona.g5": "suona/suona_g5",
+    "suona.a5": "suona/suona_a5",
+    "suona.c6": "suona/suona_c6",
+    "suona.e6": "suona/suona_e6",
+    "suona.g6": "suona/suona_g6",
     # 鼓件：每件一条一次性采样事件，无 %d 模板、无逐半音注册
     "drums.kick": "drums/drums_kick",
     "drums.kick2": "drums/drums_kick2",

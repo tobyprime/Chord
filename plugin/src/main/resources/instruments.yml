@@ -153,88 +153,70 @@ piano:
         - { min: 40,  max: 48,  sound: "chord:piano.loud.fs7.%d", base-pitch: 0.0875 }
   fallback-voices:
     - { min: -12, max: 12, sound: "block.note_block.harp", base-pitch: 1.0 }
-  # 制音尾音（0.7.8）：松键制音/松踏板/闷音时，stopSound 硬切后叠加的同源收音。
-  # sounds 三档按松键时的保持时长选（<1.2s / <2.4s / 更长）——素材取自主采样
-  # 自适应位置（时长 12%/30%/50%，上限 0.5/1.5/2.5s）的段落且保留天然电平，
-  # 尾音的响度与音色都接得上松键瞬间的琴音，衔接不跳变（固定归一的单档版在
-  # 按住 0.5~1.5s 后松键会跳升 7~10dB）。一次性事件不进活跃音表。
-  # 制音尾音（0.7.8 引入，0.7.16b 八档 + 电平补偿）：松键制音/松踏板/闷音时，stopSound
-  # 硬切后叠加同源收音。八档素材按「素材位置=保持时长」切自主采样（a~h，天然电平），
-  # 服务端按保持毫秒数就近偏早选档，再按主采样实测电平曲线（level-ms/level-db，
-  # 200ms 步进 100ms 窗 RMS 三点平滑）插值出 gain=level(素材)-level(松键) 折算 volume——
-  # 电平/斜率/音色三者都接上松键那一刻（0.7.16 三档固定阈值实测跳升 3dB=割裂感主因）。
-  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
-  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
-  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
+  # 制音尾音（0.8.1 压头 + 短保持短尾）：松键制音/松踏板/闷音时，stopSound
+  # 硬切后叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线
+  # 等间隔切档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
   # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
   # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
-  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
-  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
-  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
-  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
-  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
-  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
-  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
-  # 制音尾音（0.7.16f 等 dB 分档）：松键制音/松踏板/闷音时，stopSound 硬切后
-  # 叠加同源收音。档位由 tools/piano-endings.py 沿主采样实测电平曲线每降 3dB
-  # 切一档（起点 0.18s 避开 attack 残余区，t0..tn），「素材位置≈保持时长」：
-  # 服务端 gradeFor 混合规则选档 + tailGain 按曲线插值折算 volume，把尾音的
-  # 电平/衰减斜率/音色三者接上松键那一刻。level-db 为 100ms 窗 RMS 三点平滑
-  # + 单调化。改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
+  # + 单调化。全部尾音素材带 100ms/-6dB 压头（松键后尾音先播、主音延迟 2 tick
+  # 才 stopSound，压头把重叠期的和包络压平，消除「又弹了一下」；duck 时长与
+  # PlayMessageListener.MAIN_STOP_DELAY_TICKS 互锚）。short-sound = 短保持
+  # （<SHORT_TAIL_HELD_MS）专用 0.3s 短尾（断奏=制音器快速掐弦）。
+  # 改档位/曲线一律重跑 piano-endings.py + 本脚本，勿手改。
   release-voices:
-    - { min: -39, max: -35, base-pitch: 8.9353, held-ms: [180, 350, 550, 1100],
+    - { min: -39, max: -35, base-pitch: 8.9353, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.as0.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-12.94, -13.91, -14.74, -15.36, -15.62, -16.11, -16.55, -17.36, -18.26, -19.44, -20.62, -21.5, -22.2, -22.46, -22.59],
         sounds: ["chord:piano.rel.as0.t0", "chord:piano.rel.as0.t1", "chord:piano.rel.as0.t2", "chord:piano.rel.as0.t3"] }
-    - { min: -34, max: -27, base-pitch: 5.6446, held-ms: [180, 350, 550, 1100],
+    - { min: -34, max: -27, base-pitch: 5.6446, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.fs1.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-13.9, -16.16, -18.25, -20.09, -21.69, -22.6, -22.97, -23.02, -23.02, -23.02, -23.02, -23.02, -23.02, -23.51, -24.89],
         sounds: ["chord:piano.rel.fs1.t0", "chord:piano.rel.fs1.t1", "chord:piano.rel.fs1.t2", "chord:piano.rel.fs1.t3"] }
-    - { min: -26, max: -21, base-pitch: 3.9925, held-ms: [180, 350, 550, 1100],
+    - { min: -26, max: -21, base-pitch: 3.9925, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.c2.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-13.92, -17.05, -19.06, -20.33, -21.51, -23.39, -24.81, -25.95, -26.29, -26.57, -26.57, -26.76, -27.49, -28.19, -28.5],
         sounds: ["chord:piano.rel.c2.t0", "chord:piano.rel.c2.t1", "chord:piano.rel.c2.t2", "chord:piano.rel.c2.t3"] }
-    - { min: -20, max: -15, base-pitch: 2.818, held-ms: [180, 350, 550, 1100],
+    - { min: -20, max: -15, base-pitch: 2.818, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.fs2.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-13.03, -15.12, -17.81, -20.25, -21.85, -22.2, -22.4, -22.83, -24.06, -26.09, -28.32, -29.63, -29.63, -29.63, -29.63],
         sounds: ["chord:piano.rel.fs2.t0", "chord:piano.rel.fs2.t1", "chord:piano.rel.fs2.t2", "chord:piano.rel.fs2.t3"] }
-    - { min: -14, max: -9, base-pitch: 1.9933, held-ms: [180, 350, 550, 1100],
+    - { min: -14, max: -9, base-pitch: 1.9933, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.c3.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-10.51, -14.6, -17.56, -19.82, -22.26, -24.42, -25.14, -25.14, -25.14, -25.92, -27.27, -28.06, -28.41, -29.66, -32.39],
         sounds: ["chord:piano.rel.c3.t0", "chord:piano.rel.c3.t1", "chord:piano.rel.c3.t2", "chord:piano.rel.c3.t3"] }
-    - { min: -8, max: -3, base-pitch: 1.412, held-ms: [180, 350, 550, 1100],
+    - { min: -8, max: -3, base-pitch: 1.412, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.fs3.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-11.5, -13.13, -14.49, -16.15, -18.6, -21.08, -22.6, -23.48, -24.19, -25.07, -26.29, -27.66, -29.36, -31.14, -33.02],
         sounds: ["chord:piano.rel.fs3.t0", "chord:piano.rel.fs3.t1", "chord:piano.rel.fs3.t2", "chord:piano.rel.fs3.t3"] }
-    - { min: -2, max: 3, base-pitch: 0.9967, held-ms: [180, 350, 550, 1100],
+    - { min: -2, max: 3, base-pitch: 0.9967, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.c4.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-11.08, -14.09, -17.26, -20.59, -23.14, -25.13, -26.76, -28.55, -29.34, -29.34, -29.57, -30.89, -33.71, -36.17, -38.5],
         sounds: ["chord:piano.rel.c4.t0", "chord:piano.rel.c4.t1", "chord:piano.rel.c4.t2", "chord:piano.rel.c4.t3"] }
-    - { min: 4, max: 9, base-pitch: 0.7082, held-ms: [180, 350, 550, 1100],
+    - { min: 4, max: 9, base-pitch: 0.7082, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.fs4.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-12.25, -15.04, -16.73, -19.69, -24.26, -27.63, -28.04, -28.04, -28.04, -29.55, -32.04, -32.79, -32.79, -32.79, -32.79],
         sounds: ["chord:piano.rel.fs4.t0", "chord:piano.rel.fs4.t1", "chord:piano.rel.fs4.t2", "chord:piano.rel.fs4.t3"] }
-    - { min: 10, max: 15, base-pitch: 0.5012, held-ms: [180, 350, 550, 1100],
+    - { min: 10, max: 15, base-pitch: 0.5012, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.c5.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-12.58, -19.62, -23.61, -25.19, -28.69, -31.84, -35.18, -35.18, -35.18, -35.18, -35.18, -35.26, -37.79, -38.92, -39.36],
         sounds: ["chord:piano.rel.c5.t0", "chord:piano.rel.c5.t1", "chord:piano.rel.c5.t2", "chord:piano.rel.c5.t3"] }
-    - { min: 16, max: 21, base-pitch: 0.354, held-ms: [180, 350, 550, 1100],
+    - { min: 16, max: 21, base-pitch: 0.354, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.fs5.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-11.69, -19.28, -26.76, -31.22, -35.27, -35.27, -35.27, -35.27, -36.14, -39.73, -39.73, -41.19, -41.33, -41.73, -41.73],
         sounds: ["chord:piano.rel.fs5.t0", "chord:piano.rel.fs5.t1", "chord:piano.rel.fs5.t2", "chord:piano.rel.fs5.t3"] }
-    - { min: 22, max: 27, base-pitch: 0.2496, held-ms: [180, 350, 550, 1100],
+    - { min: 22, max: 27, base-pitch: 0.2496, held-ms: [180, 350, 550, 1100], short-sound: "chord:piano.rel.c6.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800],
         level-db: [-11.58, -19.08, -25.48, -29.13, -29.88, -30.48, -32.86, -34.66, -37.22, -40.7, -44.33, -46.76, -46.76, -46.76, -47.35],
         sounds: ["chord:piano.rel.c6.t0", "chord:piano.rel.c6.t1", "chord:piano.rel.c6.t2", "chord:piano.rel.c6.t3"] }
-    - { min: 28, max: 33, base-pitch: 0.1773, held-ms: [180],
+    - { min: 28, max: 33, base-pitch: 0.1773, held-ms: [180], short-sound: "chord:piano.rel.fs6.ts",
         level-ms: [0, 200, 400, 600, 800, 1000],
         level-db: [-10.96, -18.99, -26.82, -33.58, -40.77, -48.53],
         sounds: ["chord:piano.rel.fs6.t0"] }
-    - { min: 34, max: 39, base-pitch: 0.1241, held-ms: [180, 350, 550],
+    - { min: 34, max: 39, base-pitch: 0.1241, held-ms: [180, 350, 550], short-sound: "chord:piano.rel.c7.ts",
         level-ms: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600],
         level-db: [-15.38, -23.16, -29.84, -32.65, -37.22, -40.3, -43.1, -44.6, -44.6],
         sounds: ["chord:piano.rel.c7.t0", "chord:piano.rel.c7.t1", "chord:piano.rel.c7.t2"] }
-    - { min: 40, max: 48, base-pitch: 0.0875, held-ms: [180],
+    - { min: 40, max: 48, base-pitch: 0.0875, held-ms: [180], short-sound: "chord:piano.rel.fs7.ts",
         level-ms: [0, 200, 400, 600],
         level-db: [-16.29, -31.5, -42.27, -48.61],
         sounds: ["chord:piano.rel.fs7.t0"] }
@@ -405,3 +387,34 @@ violin:
         - { min: 35, max: 40, sound: "chord:violin.soft.c7.%d",  base-pitch: 0.1250648 }  # C7 实测
   fallback-voices:
     - { min: -12, max: 12, sound: "block.note_block.flute", base-pitch: 1.0 }
+
+# 手持吹奏乐器：release-mode stop（气息停即止音，同口琴）。
+# 唢呐采样（0.9.0）：无现成 CC0 唢呐采样库（商业 Kong Audio 不免费；freesound
+# 登录墙；GM Shanai 补丁授权来源不清），素材为 tools/suona-synth.py 原创合成
+# ——带限锯齿加法合成 + 喇叭口共振峰 + 打音上滑起振 + 迟起颤音，逐锚点固定
+# 种子可复现；日后拿到真人录音按 harmonica-rebuild 流程替换，voices 由脚本
+# 重新生成。11 锚点 C/E/G 网格（C4~G6，间距 ≤4 半音），每采样最大拉伸 ±2 半音；
+# 全音域亮度统一（频谱质心 3.4~3.8kHz）：低中音区谐波形满显双簧「嗡」，高音区
+# 基频主导显「啸」。p/f 双力度层未做（包体预算），需要时照 violin 层结构加。
+suona:
+  display-name: "唢呐"
+  base-item: BLAZE_ROD
+  release-mode: stop
+  semitone-range: [0, 31]    # C4~G6：低1 ~ 高高5（高音主奏定位，默认键达 +25，顶部经直排音）
+  volume: 1.0
+  max-polyphony: 6           # 旋律乐器：自动单音收敛阈值默认值
+  category: RECORDS
+  voices:
+    - { min: 0,  max: 2,  sound: "chord:suona.c4.%d", base-pitch: 1.0003066 }  # C4 实测
+    - { min: 3,  max: 5,  sound: "chord:suona.e4.%d", base-pitch: 0.7921357 }  # E4 实测
+    - { min: 6,  max: 8,  sound: "chord:suona.g4.%d", base-pitch: 0.6676234 }  # G4 实测
+    - { min: 9,  max: 10, sound: "chord:suona.a4.%d", base-pitch: 0.5937612 }  # A4 实测
+    - { min: 11, max: 14, sound: "chord:suona.c5.%d", base-pitch: 0.5006731 }  # C5 实测
+    - { min: 15, max: 17, sound: "chord:suona.e5.%d", base-pitch: 0.3969589 }  # E5 实测
+    - { min: 18, max: 20, sound: "chord:suona.g5.%d", base-pitch: 0.3342714 }  # G5 实测
+    - { min: 21, max: 22, sound: "chord:suona.a5.%d", base-pitch: 0.2978681 }  # A5 实测
+    - { min: 23, max: 26, sound: "chord:suona.c6.%d", base-pitch: 0.2502542 }  # C6 实测
+    - { min: 27, max: 29, sound: "chord:suona.e6.%d", base-pitch: 0.1989666 }  # E6 实测
+    - { min: 30, max: 31, sound: "chord:suona.g6.%d", base-pitch: 0.1661214 }  # G6 实测
+  fallback-voices:
+    - { min: 0, max: 31, sound: "block.note_block.didgeridoo", base-pitch: 1.0 }

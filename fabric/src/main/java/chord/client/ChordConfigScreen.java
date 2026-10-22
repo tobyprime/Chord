@@ -7,7 +7,6 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -210,12 +209,16 @@ public final class ChordConfigScreen extends Screen {
         refreshKeyButtons();
     }
 
+    /** 最近一次输入事件的 Shift 状态（半音步进 ±12 用；事件自带修饰位，不碰窗口句柄）。 */
+    private boolean shiftHeld;
+
     @Override
     public boolean keyPressed(KeyEvent event) {
+        shiftHeld = event.hasShiftDown();
         if (capturing >= 0) {
-            if (event.key() == GLFW.GLFW_KEY_ESCAPE) {
+            if (event.isEscape()) {
                 capturing = -1;
-            } else if (event.key() == GLFW.GLFW_KEY_DELETE) {
+            } else if (event.key() == InputConstants.getKey("key.keyboard.delete").getValue()) {
                 if (capturing < ChordConfig.MAX_SLOTS) {
                     slots.get(capturing).key = null;
                 } else if (capturing == 24) autoKey = null;
@@ -248,12 +251,24 @@ public final class ChordConfigScreen extends Screen {
             refreshKeyButtons();
             return true;
         }
-        if (confirming && event.key() == GLFW.GLFW_KEY_ESCAPE) {
+        if (confirming && event.isEscape()) {
             confirming = false; // 确认态里 Esc = 返回编辑（退出必须显点「放弃改动」）
             rebuild();
             return true;
         }
         return super.keyPressed(event);
+    }
+
+    @Override
+    public boolean keyReleased(KeyEvent event) {
+        shiftHeld = event.hasShiftDown();
+        return super.keyReleased(event);
+    }
+
+    @Override
+    public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubled) {
+        shiftHeld = event.hasShiftDown();
+        return super.mouseClicked(event, doubled);
     }
 
     /** 有未保存改动时拦下关页（Esc / 其他关闭路径），先进确认行。 */
@@ -275,11 +290,7 @@ public final class ChordConfigScreen extends Screen {
     }
 
     private int step() {
-        long window = this.minecraft != null ? this.minecraft.getWindow().handle() : 0;
-        boolean shift = window != 0
-                && (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS
-                || GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_SHIFT) == GLFW.GLFW_PRESS);
-        return shift ? 12 : 1;
+        return shiftHeld ? 12 : 1;
     }
 
     private void rebuild() {

@@ -113,7 +113,8 @@ public final class InstrumentRegistry {
     }
 
     /**
-     * release-voices：[{min, max, base-pitch, held-ms: [各档素材源位置(ms)], sounds: [...]}]。
+     * release-voices：[{min, max, base-pitch, held-ms: [各档素材源位置(ms)], sounds: [...],
+     * short-sound: 短保持专用 0.3s 短尾（可缺省）}]。
      * heldMs 与 sounds 一一对应，服务端按保持毫秒数就近选档；缺省回落三档阈值（旧配置）。
      */
     private List<Instrument.ReleaseVoice> parseReleaseVoices(String key, ConfigurationSection section) {
@@ -141,8 +142,10 @@ public final class InstrumentRegistry {
             long[] levelMs = parseLongList(key, raw.get("level-ms"), -1, "level-ms");
             double[] levelDb = parseDoubleList(key, raw.get("level-db"), levelMs.length, "level-db");
             double basePitch = raw.get("base-pitch") instanceof Number n ? n.doubleValue() : 1.0;
+            String shortSound = raw.get("short-sound") instanceof String s && !s.isBlank()
+                    ? s.trim() : null;
             result.add(new Instrument.ReleaseVoice(min.intValue(), max.intValue(), basePitch,
-                    sounds, gradeHeldMs, levelMs, levelDb));
+                    sounds, gradeHeldMs, levelMs, levelDb, shortSound));
         }
         return result;
     }

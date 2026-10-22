@@ -14,7 +14,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
-import org.lwjgl.glfw.GLFW;
+
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -173,13 +173,19 @@ public final class PlayState {
         slots = list.toArray(new KeySlot[0]);
     }
 
-    /** 功能键（GLFW 键码；演奏配置页可改）。自动演奏默认 G。 */
-    private static int autoKeyCode = GLFW.GLFW_KEY_G;
+    // 默认键码一律按键名运行时解析：26.3 起键码整体重编号，常量内联会跨版本错位
+    /** 功能键（演奏配置页可改）。自动演奏默认 G。 */
+    private static int autoKeyCode = keyCode("key.keyboard.g");
     /** 踏板键默认 K（双击切延音模式）。 */
-    private static int pedalKeyCode = GLFW.GLFW_KEY_K;
+    private static int pedalKeyCode = keyCode("key.keyboard.k");
     /** 高/低八度锁（独立按键，按一次锁定 ±12，默认 I / U）。 */
-    private static int latchHighKeyCode = GLFW.GLFW_KEY_I;
-    private static int latchLowKeyCode = GLFW.GLFW_KEY_U;
+    private static int latchHighKeyCode = keyCode("key.keyboard.i");
+    private static int latchLowKeyCode = keyCode("key.keyboard.u");
+
+    /** 键名 → 键码（运行时解析，见 ChordClient.keyCodeOf 注释）。 */
+    private static int keyCode(String name) {
+        return InputConstants.getKey(name).getValue();
+    }
 
     static void setAutoKey(int keyCode) {
         autoKeyCode = keyCode;
@@ -439,14 +445,14 @@ public final class PlayState {
         int pressedKey = event.key();
         // 自动演奏键：按一次开始/结束（松开也消费，避免漏给其他绑定）
         if (pressedKey == autoKeyCode) {
-            if (action == GLFW.GLFW_PRESS) {
+            if (action == InputConstants.PRESS) {
                 toggleAutoPlay(mc);
             }
             return true;
         }
         // 高/低八度锁：独立按键（默认 I / U，演奏配置页可改），按一次锁定/再按解锁；
         // 锁定后按住鼠标修饰键 = 叠加成高高/低低音
-        if (action == GLFW.GLFW_PRESS && (pressedKey == latchHighKeyCode || pressedKey == latchLowKeyCode)) {
+        if (action == InputConstants.PRESS && (pressedKey == latchHighKeyCode || pressedKey == latchLowKeyCode)) {
             boolean high = pressedKey == latchHighKeyCode;
             int target = high ? 12 : -12;
             octaveLatch = octaveLatch == target ? 0 : target;
@@ -460,7 +466,7 @@ public final class PlayState {
         // decay 乐器（吉他/鼓）K = 瞬时闷音（原行为）
         if (pressedKey == pedalKeyCode) {
             if (current != null && current.sustainPedal) {
-                    if (action == GLFW.GLFW_PRESS) {
+                    if (action == InputConstants.PRESS) {
                         long now = System.currentTimeMillis();
                         boolean doubleTap = now - lastPedalPressAt < DOUBLE_TAP_MS;
                         lastPedalPressAt = now;
@@ -470,22 +476,22 @@ public final class PlayState {
                             flash(pedalLatched ? "延音模式：松键延音，按住 K 临时止音" : "止音模式：松键制音，按住 K 延音", false);
                         }
                         syncPedal();
-                    } else if (action == GLFW.GLFW_RELEASE && pedalKeyDown) {
+                    } else if (action == InputConstants.RELEASE && pedalKeyDown) {
                         pedalKeyDown = false;
                         syncPedal();
                     }
-            } else if (action == GLFW.GLFW_PRESS) {
+            } else if (action == InputConstants.PRESS) {
                 damper();
             }
             return true;
         }
         for (KeySlot slot : slots) {
-            if (slot.keyCode == GLFW.GLFW_KEY_UNKNOWN || slot.keyCode != pressedKey) {
+            if (slot.keyCode == InputConstants.UNKNOWN.getValue() || slot.keyCode != pressedKey) {
                 continue;
             }
-            if (action == GLFW.GLFW_PRESS) {
+            if (action == InputConstants.PRESS) {
                 noteOn(mc, slot);
-            } else if (action == GLFW.GLFW_RELEASE) {
+            } else if (action == InputConstants.RELEASE) {
                 noteOff(slot);
             }
             // GLFW_REPEAT 忽略：noteOn 自带按住去重
@@ -547,15 +553,14 @@ public final class PlayState {
 
     /** 当前鼠标修饰键的半音偏移（左 −12 / 右 +12 / 中 +1，可叠加）。 */
     private static int currentShift(Minecraft mc) {
-        long window = mc.getWindow().handle();
         int shift = 0;
-        if (GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+        if (mc.mouseHandler.isLeftPressed()) {
             shift -= 12;
         }
-        if (GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_RIGHT) == GLFW.GLFW_PRESS) {
+        if (mc.mouseHandler.isRightPressed()) {
             shift += 12;
         }
-        if (GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == GLFW.GLFW_PRESS) {
+        if (mc.mouseHandler.isMiddlePressed()) {
             shift += 1;
         }
         return shift;
